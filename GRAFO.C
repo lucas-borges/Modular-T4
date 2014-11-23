@@ -643,226 +643,144 @@
 *  Função: ARV  &Deturpar árvore
 *  ****/
 
-   void ARV_Deturpar( void * pArvoreParm ,
-                      ARV_tpModosDeturpacao ModoDeturpar )
+   void GRF_Deturpar( void * pGrafoParm ,
+                      GRF_tpModosDeturpacao ModoDeturpar )
    {
 
-      tpArvore * pArvore = NULL ;
+      GRF_tpGrafo * pGrafo = NULL ;
 
-      if ( pArvoreParm == NULL )
+      if ( pGrafoParm == NULL )
       {
          return ;
       } /* if */
 
-      pArvore = ( tpArvore * )( pArvoreParm ) ;
+      pGrafo = ( GRF_tpGrafo * )( pGrafoParm ) ;
 
       switch ( ModoDeturpar ) {
 
-      /* Modifica o tipo da cabeça */
+      /* Elimina elemento corrente */
 
-         case DeturpaTipoCabeca :
+         case DeturpaEliminaCorrente :
          {
 
-            CED_DefinirTipoEspaco( pArvore , CED_ID_TIPO_VALOR_NULO ) ;
+			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
 
             break ;
 
-         } /* fim ativa: Modifica o tipo da cabeça */
+         } /* fim ativa: Elimina elemento corrente */
 
-      /* Anula ponteiro raiz */
+      /* Anula ponteiro sucessor */
 
-         case DeturpaRaizNula :
+         case DeturpaSucessorNulo :
          {
 
-            pArvore->pNoRaiz = NULL ;
+ 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
 
             break ;
 
-         } /* fim ativa: Anula ponteiro raiz */
+         } /* fim ativa: Anula ponteiro sucessor */
 
-      /* Anula ponteiro corrente */
+      /* Anula ponteiro predecessor */
+
+         case DeturpaPredecessorNulo :
+         {
+
+			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+
+            break ;
+
+         } /* fim ativa: Anula ponteiro predecessor */
+
+      /* Faz sucessor apontar para lixo */
+
+         case DeturpaSucessorLixo :
+         {
+
+			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+
+            break ;
+
+         } /* fim ativa: Faz sucessor apontar para lixo */
+
+      /* Faz predecessor apontar para lixo */
+
+         case DeturpaPredecessorLixo :
+         {
+
+			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+
+            break ;
+
+         } /* fim ativa: Faz predecessor apontar para lixo */
+
+      /* Anula valor do vértice corrente */
+
+         case DeturpaValorNulo :
+         {
+
+			pGrafo->pVerticeCorr->pValor=NULL;
+
+            break ;
+
+         } /* fim ativa: Anula valor do vértice corrente */
+
+	  /* Altera tipo de estrutra apontado pelo vértice */
+
+         case DeturpaTipoEstrutura :
+         {
+
+			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
+
+            break ;
+
+         } /* fim ativa: Altera tipo de estrutra apontado pelo vértice */
+
+      /* Destaca vértice do grafo sem liberá-lo */
+
+         case DeturpaDestacaVertice :
+         {
+
+
+
+            break ;
+
+         } /* fim ativa: Destaca cértice do grafo sem liberá-lo */
+
+      /* Anula ponteiro pra elemento corrente */
 
          case DeturpaCorrenteNulo :
          {
 
-            pArvore->pNoCorr = NULL ;
+			pGrafo->pVerticeCorr=NULL;
 
             break ;
 
-         } /* fim ativa: Anula ponteiro corrente */
+         } /* fim ativa: Anula ponteiro pra elemento corrente */
 
-      /* Faz raiz apontar para lixo */
+      /* Anula um ponteiro de origem */
 
-         case DeturpaRaizLixo :
+         case DeturpaOrigemNulo :
          {
 
-            pArvore->pNoRaiz = ( tpNoArvore * )( EspacoLixo ) ;
 
             break ;
 
-         } /* fim ativa: Faz raiz apontar para lixo */
+         } /* fim ativa: Anula um ponteiro de origem */
 
-      /* Faz corrente apontar para lixo */
-
-         case DeturpaCorrenteLixo :
-         {
-
-            pArvore->pNoCorr = ( tpNoArvore * )( EspacoLixo ) ;
-
-            break ;
-
-         } /* fim ativa: Faz corrente apontar para lixo */
-
-      /* Deturpar espaço cabeca */
-
-         case DeturparEspacoCabeca :
-         {
-
-            memcpy( (( char * )( pArvore )) - 10 , "????" , 4 ) ;
-
-            break ;
-
-         } /* fim ativa: Deturpar espaço cabeca */
-
-      /* Deturpa nóo */
+      /* ModoDetrupar desconhecido */
 
          default :
-
-         if ( pArvore->pNoCorr != NULL )
-         {
-
-            switch ( ModoDeturpar ) {
-
-            /* Modifica tipo nó corrente */
-
-               case DeturpaTipoNo :
-               {
-
-                  CED_DefinirTipoEspaco( pArvore->pNoCorr , CED_ID_TIPO_VALOR_NULO ) ;
-
-                  break ;
-
-               } /* fim ativa: Modifica tipo nó corrente */
-
-            /* Anula ponteiro cabeça */
-
-               case DeturpaPtCabecaNulo :
-               {
-
-                  pArvore->pNoCorr->pCabeca = NULL ;
-
-                  break ;
-
-               } /* fim ativa: Anula ponteiro cabeça */
-
-            /* Anula ponteiro pai */
-
-               case DeturpaPtPaiNulo :
-               {
-
-                  pArvore->pNoCorr->pNoPai = NULL ;
-
-                  break ;
-
-               } /* fim ativa: Anula ponteiro pai */
-
-            /* Anula ponteiro filho esquerda */
-
-               case DeturpaPtEsqNulo :
-               {
-
-                  pArvore->pNoCorr->pNoEsq = NULL ;
-
-                  break ;
-
-               } /* fim ativa: Anula ponteiro filho esquerda */
-
-            /* Anula ponteiro filho direita */
-
-               case DeturpaPtDirNulo :
-               {
-
-                  pArvore->pNoCorr->pNoDir = NULL ;
-
-                  break ;
-
-               } /* fim ativa: Anula ponteiro filho direita */
-
-            /* Faz ponteiro cabeça apontar para lixo */
-
-               case DeturpaPtCabecaLixo :
-               {
-
-                  pArvore->pNoCorr->pCabeca = ( tpArvore * )( EspacoLixo ) ;
-
-                  break ;
-
-               } /* fim ativa: Faz ponteiro cabeça apontar para lixo */
-
-            /* Faz ponteiro pai apontar para lixo */
-
-               case DeturpaPtPaiLixo :
-               {
-
-                  pArvore->pNoCorr->pNoPai = ( tpNoArvore * )( EspacoLixo ) ;
-
-                  break ;
-
-               } /* fim ativa: Faz ponteiro pai apontar para lixo */
-
-            /* Faz ponteiro filho esquerda apontar para lixo */
-
-               case DeturpaPtEsqLixo :
-               {
-
-                  pArvore->pNoCorr->pNoEsq = ( tpNoArvore * )( EspacoLixo ) ;
-
-                  break ;
-
-               } /* fim ativa: Faz ponteiro filho esquerda apontar para lixo */
-
-            /* Faz ponteiro filho direita apontar para lixo */
-
-               case DeturpaPtDirLixo :
-               {
-
-                  pArvore->pNoCorr->pNoDir = ( tpNoArvore * )( EspacoLixo ) ;
-
-                  break ;
-
-               } /* fim ativa: Faz ponteiro filho direita apontar para lixo */
-
-            /* Atribui valor fora do domínio do espaço */
-
-               case DeturpaValor :
-               {
-
-                  memcpy( &( pArvore->pNoCorr->Valor ) , "<<<<<" , 5 ) ;
-
-                  break ;
-
-               } /* fim ativa: Atribui valor fora do domínio do espaço */
-
-            /* Deturpar espaço no */
-
-               case DeturparEspacoNo :
-               {
-
-                  memcpy( (( char * )( pArvore->pNoCorr )) - 50 , "????????" , 8 ) ;
-
-                  break ;
-
-               } /* fim ativa: Deturpar espaço no */
-
-            } /* fim seleciona: Deturpa nóo */
-
+		 {
+			
+			printf("ModoDeturpar desconhecido");
+         
             break ;
 
-         } /* fim ativa: Deturpa nóo */
+         } /* fim ativa: ModoDetrupar desconhecido */
 
-      } /* fim seleciona: Raiz de ARV  &Deturpar árvore */
+      } /* fim seleciona: Raiz de GRF  &Deturpar grafo */
 
-   } /* Fim função: ARV  &Deturpar árvore */
+   } /* Fim função: GRF  &Deturpar grafo */
 
 #endif
 

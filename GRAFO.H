@@ -98,34 +98,34 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
    typedef enum {
 
-         DeturpaEliminaCorrente        =  1 ,
+         DeturpaEliminaCorrente       =  1 ,
                /* Elimina o elemento corrente da estrutura escolhida */
 
          DeturpaSucessorNulo          =  2 ,
                /* Atribui NULL ao ponteiro para um vértice sucessor */
 
-         DeturpaPredecessorNulo      =  3 ,
+         DeturpaPredecessorNulo       =  3 ,
                /* Atribui NULL ao ponteiro para um vértice predecessor */
 
          DeturpaSucessorLixo          =  4 ,
                /* Atribui lixo ao ponteiro para a referência a um vértice sucessor */
 
-         DeturpaPredecessorLixo      =  5 ,
+         DeturpaPredecessorLixo       =  5 ,
                /* Atribui lixo ao ponteiro para a referência a um vértice predecessor */
 
-         DeturpaValorNulo            =  6 ,
+         DeturpaValorNulo             =  6 ,
                /* Atribui NULL ao ponteiro para o conteúdo do vértice */
 
-         DeturpaTipoEstrutura      =  7 ,
+         DeturpaTipoEstrutura         =  7 ,
                /* Altera o tipo de estrutura apontado no vértice */
 
-         DeturpaDestacaVertice         =  8 ,
+         DeturpaDestacaVertice        =  8 ,
                /* Destaca vértice do grafo sem liberá-lo com free */
 
-         DeturpaCorrenteNulo         =  9 ,
+         DeturpaCorrenteNulo          =  9 ,
                /* Atribui NULL ao ponteiro corrente */
 
-         DeturpaOrigemNulo         = 10 ,
+         DeturpaOrigemNulo            = 10 ,
                /* Atribui NULL a um ponteiro de origem */
 
 
