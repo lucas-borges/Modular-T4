@@ -77,8 +77,12 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 		 GRF_CondRetErroInserirVertice,
 		      /* erro ao inserir o vértice */
 
-		 GRF_CondRetErroInserirAresta
+		 GRF_CondRetErroInserirAresta,
 			  /* erro ao inserir a aresta */
+
+         GRF_CondRetErroEstrutura
+			/* erro na estrutura do grafo*/
+
 		 
    } GRF_tpCondRet ;
 
