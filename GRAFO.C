@@ -29,7 +29,7 @@
    #include   "Generico.h"
    #include   "Conta.h"
    #include   "cespdin.h"
-   #include   "..\\tabelas\\IdTiposEspaco.def"
+  // #include   "..\\tabelas\\IdTiposEspaco.def" descobrir o que é e como usa
 #endif
 
 /***********************************************************************
@@ -107,6 +107,11 @@
    void DestruirVertice ( void * pVertice );
 
    int EncontraCaminho ( tpVertice * atual , tpVertice * destino , int * buffer );
+
+   #ifdef _DEBUG
+
+   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices )
+	#endif
 
    /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -636,6 +641,33 @@
 	 
  }/* Fim função: GRF  &Caminhar */
 
+    #ifdef _DEBUG
+
+/***************************************************************************
+*
+*  Função: GRF  &Verificar um grafo
+*  ****/
+
+   GRF_tpCondRet GRF_VerificarGrafo( void * pGrafoParm )
+   {
+
+      GRF_tppGrafo pGrafo = NULL ;
+
+      if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
+      {
+         return GRF_CondRetErroEstrutura ;
+      } /* if */
+
+      CED_MarcarEspacoAtivo( pGrafoParm ) ;
+
+      pGrafo = ( GRF_tppGrafo ) ( pGrafoParm ) ;
+
+	  return VerificarVertices( pGrafo ) ;
+
+   } /* Fim função: ARV  &Verificar uma árvore */
+
+#endif
+
  #ifdef _DEBUG
 
 /***************************************************************************
@@ -913,32 +945,159 @@
 
    } /* Fim função: GRF  -Encontra caminho */
 
-   #ifdef _DEBUG
+
+#ifdef _DEBUG
 
 /***************************************************************************
 *
-*  Função: GRF  &Verificar um grafo
+*  Função: GRF  &Verificar um nó cabeça
 *  ****/
 
-   GRF_tpCondRet GRF_VerificarGrafo( void * pGrafoParm )
+   GRF_tpCondRet GRF_VerificarCabeca( void * pCabecaParm )
    {
 
       GRF_tppGrafo pGrafo = NULL ;
 
-      if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
-      {
-         return GRF_CondRetErroEstrutura ;
-      } /* if */
+      /* Verifica o tipo do espaço */
 
-      CED_MarcarEspacoAtivo( pGrafoParm ) ;
+         if ( pCabecaParm == NULL )
+         {
+            TST_NotificarFalha( "Tentou verificar cabeça inexistente." ) ;
+            return GRF_CondRetErroEstrutura ;
+         } /* if */
 
-      pGrafo = ( GRF_tppGrafo ) ( pGrafoParm ) ;
+         if ( ! CED_VerificarEspaco( pCabecaParm , NULL ))
+         {
+            TST_NotificarFalha( "Controle do espaço acusou erro." ) ;
+            return GRF_CondRetErroEstrutura ;
+         } /* if */
 
-      return VerificarNo( pArvore->pNoRaiz ) ;
+         if ( TST_CompararInt( GRF_TipoEspacoCabeca ,
+              CED_ObterTipoEspaco( pCabecaParm ) ,
+              "Tipo do espaço de dados não é cabeça de grafo." ) != TST_CondRetOK ) 
+         {
+            return GRF_CondRetErroEstrutura ;
+         } /* if */
 
-   } /* Fim função: ARV  &Verificar uma árvore */
+         pGrafo = ( GRF_tppGrafo )( pCabecaParm ) ;
+
+
+      /* Verifica corrente */
+
+		 if ( pGrafo->pVerticeCorr != NULL )
+         {
+			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
+                 "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
+            {
+               return GRF_CondRetErroEstrutura ;
+            } /* if */
+          
+         } /* if */
+
+      return GRF_CondRetOK ;
+
+   } /* Fim função: GRF  &Verificar um nó cabeça */
 
 #endif
+
+   #ifdef _DEBUG
+
+
+/***********************************************************************
+*
+*  $FC Função: ARV  -Explorar verificando os nós de uma árvore
+*
+*  $ED Descrição da função
+*     Percorre recursivamente a árvore verificando os nós à medida que forem
+*     visitados. Caso seja encontrado alguma falha, a verificação será
+*     suspensa. Portanto, no caso de falha, é possível que nem todos
+*     os nós da árvore sejam visitados.
+*
+***********************************************************************/
+
+   GRF_tpCondRet VerificarVertices( GRF_tppGrafo pGrafo )
+   {
+
+      GRF_tpCondRet CondErro = GRF_CondRetOK ;
+
+	  void * aux;
+
+	  tpVertice * vertice;
+
+      if ( pGrafo->vertices == NULL )
+      {
+         return GRF_CondRetOK ;
+      } /* if */
+
+      CED_MarcarEspacoAtivo( pGrafo->vertices ) ;
+
+     LIS_IrInicioLista(pGrafo->vertices);
+
+	 do
+	 {
+		 LIS_ObterValor(pGrafo->vertices,&aux);
+		 
+		 vertice = (tpVertice*)aux;
+
+		 if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
+                 "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
+            {
+               return GRF_CondRetErroEstrutura ;
+            } /* if */
+		 if( VerificarArestas ( vertice ) != GRF_CondRetOK )
+		 {
+			 return GRF_CondRetErroEstrutura ;
+		 }/* if */
+
+	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
+
+   } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
+
+   GRF_tpCondRet VerificarArestas ( tpVertice * vertice ) 
+   {
+	   int flag;
+	   void * aux;
+	   tpVertice * verticeDestino;
+
+	   if( LIS_IrInicioLista (vertice->arestas) == LIS_CondRetListaNaoExiste )
+	   {
+		   return GRF_CondRetOK;
+	   }/* if */
+
+	   do
+	   {
+		   LIS_ObterValor(vertice->arestas,&aux);
+
+		   verticeDestino = ( tpVertice * ) aux ;
+
+		   flag = 0;
+
+		   LIS_IrInicioLista ( verticeDestino->arestas ) ;
+		   do
+		   {
+			   LIS_ObterValor(verticeDestino->arestas,&aux);
+
+			   if(vertice == aux)
+			   {
+				   flag = 1;
+				   break;
+			   }/* if */
+
+		   } while(LIS_AvancarElementoCorrente(verticeDestino->arestas,1)==LIS_CondRetOK);
+
+		   if(!flag)
+		   {
+			   printf("\nAresta direcionada encontrada.\n");
+			   return GRF_CondRetErroEstrutura;
+		   }/* if */
+
+	   } while(LIS_AvancarElementoCorrente(vertice->arestas,1)==LIS_CondRetOK);
+
+	   return GRF_CondRetOK;
+   }
+
+#endif
+
 
 
 
