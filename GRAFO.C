@@ -25,6 +25,12 @@
 #include "LISTA.H"
 #include "GRAFO.H"
 
+#ifdef _DEBUG
+   #include   "Generico.h"
+   #include   "Conta.h"
+   #include   "cespdin.h"
+   #include   "..\\tabelas\\IdTiposEspaco.def"
+#endif
 
 /***********************************************************************
 *
@@ -34,6 +40,18 @@
 ***********************************************************************/
 
    typedef struct tagVertice {
+
+		#ifdef _DEBUG
+
+         GRF_tpGrafo * pCabeca ;
+               /* Ponteiro para cabeca
+               *
+               *$ED Descrição
+               *   Todos os vértices do grafo devem apontar para a respectiva cabeça.
+               *   Esse ponteiro corresponde a um identificador do grafo para fins
+               *   de verificação da integridade. */
+
+         #endif
 
          void * pValor ;
                /* Ponteiro para o valor contido no elemento */
@@ -976,6 +994,33 @@
 	  
 
    } /* Fim função: GRF  -Encontra caminho */
+
+   #ifdef _DEBUG
+
+/***************************************************************************
+*
+*  Função: GRF  &Verificar um grafo
+*  ****/
+
+   GRF_tpCondRet GRF_VerificarGrafo( void * pGrafoParm )
+   {
+
+      GRF_tppGrafo pGrafo = NULL ;
+
+      if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
+      {
+         return GRF_CondRetErroEstrutura ;
+      } /* if */
+
+      CED_MarcarEspacoAtivo( pGrafoParm ) ;
+
+      pGrafo = ( GRF_tppGrafo ) ( pGrafoParm ) ;
+
+      return VerificarNo( pArvore->pNoRaiz ) ;
+
+   } /* Fim função: ARV  &Verificar uma árvore */
+
+#endif
 
 
 
