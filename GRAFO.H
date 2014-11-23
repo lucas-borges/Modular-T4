@@ -85,6 +85,53 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
 /***********************************************************************
 *
+*  $TC Tipo de dados: GRF Modos de deturpar
+*
+*
+***********************************************************************/
+
+#ifdef _DEBUG
+
+   typedef enum {
+
+         DeturpaEliminaCorrente        =  1 ,
+               /* Elimina o elemento corrente da estrutura escolhida */
+
+         DeturpaSucessorNulo          =  2 ,
+               /* Atribui NULL ao ponteiro para um vértice sucessor */
+
+         DeturpaPredecessorNulo      =  3 ,
+               /* Atribui NULL ao ponteiro para um vértice predecessor */
+
+         DeturpaSucessorLixo          =  4 ,
+               /* Atribui lixo ao ponteiro para a referência a um vértice sucessor */
+
+         DeturpaPredecessorLixo      =  5 ,
+               /* Atribui lixo ao ponteiro para a referência a um vértice predecessor */
+
+         DeturpaValorNulo            =  6 ,
+               /* Atribui NULL ao ponteiro para o conteúdo do vértice */
+
+         DeturpaTipoEstrutura      =  7 ,
+               /* Altera o tipo de estrutura apontado no vértice */
+
+         DeturpaDestacaVertice         =  8 ,
+               /* Destaca vértice do grafo sem liberá-lo com free */
+
+         DeturpaCorrenteNulo         =  9 ,
+               /* Atribui NULL ao ponteiro corrente */
+
+         DeturpaOrigemNulo         = 10 ,
+               /* Atribui NULL a um ponteiro de origem */
+
+
+   } GRF_tpModosDeturpacao ;
+
+#endif
+
+
+/***********************************************************************
+*
 *  $FC Função: GRF  &Criar Grafo
 *
 *  $ED Descrição da função
@@ -621,41 +668,31 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
 /***********************************************************************
 *
-*  $FC Função: GRF  &Deturpar árvore
+*  $FC Função: GRF  &Deturpar Grafo
 *
 *  $ED Descrição da função
 *     Função da interface de teste.
-*     Corrompe elementos específicos da estrutura da árvore.
+*     Corrompe elementos específicos da estrutura do grafo.
 *     Essa função destina-se a preparar os cenários de teste dos
 *     casos de teste utilizados ao testar os verificadores estruturais
-*     da árvore.
+*     do grafo.
 *     Esta função não tem proteção contra erros de uso, consequentemente
 *     poderá levar o programa a ser cancelado pelo sistema operacional.
 *
 *  $EP Parâmetros
-*     $P pArvoreParm  - árvore a ser deturpada
-*     $P ModoDeturpar - identifica como deve ser feita a deturpação
+*     $P pGrafoParm  - grafo a ser deturpada
+*     $P ModoDeturpar - identifica como deve ser feita a deturpação,
 *                       GRF_tpModosDeturpacao identifica os modos de
 *                       deturpação conhecidos
 *
 ***********************************************************************/
-
+  
 #ifdef _DEBUG
 
    void GRF_Deturpar( void * pGrafoParm ,
                       GRF_tpModosDeturpacao ModoDeturpar ) ;
 
 #endif
-
-#undef GRAFO_EXT
-
-/********** Fim do módulo de definição: GRF  Módulo árvore **********/
-
-#else
-#endif
-
-
-
 /********** Fim do módulo de definição: GRF Grafo não orientado **********/
 
 
