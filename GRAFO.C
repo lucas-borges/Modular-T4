@@ -110,7 +110,7 @@
 
    #ifdef _DEBUG
 
-   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices )
+   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices );
 	#endif
 
    /*****  Código das funções exportadas pelo módulo  *****/
@@ -672,7 +672,7 @@
 
 /***************************************************************************
 *
-*  Função: ARV  &Deturpar árvore
+*  Função: GRF  &Deturpar Grafo
 *  ****/
 
    void GRF_Deturpar( void * pGrafoParm ,
@@ -696,6 +696,7 @@
          {
 
 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 free(pGrafo->pVerticeCorr);
 
             break ;
 
@@ -707,6 +708,7 @@
          {
 
  			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 LIS_Deturpar(pGrafo->vertices,0);
 
             break ;
 
@@ -718,6 +720,7 @@
          {
 
 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 LIS_Deturpar(pGrafo->vertices,1);
 
             break ;
 
@@ -729,7 +732,8 @@
          {
 
 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
-
+			  LIS_Deturpar(pGrafo->vertices,2);
+	
             break ;
 
          } /* fim ativa: Faz sucessor apontar para lixo */
@@ -740,6 +744,7 @@
          {
 
 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			  LIS_Deturpar(pGrafo->vertices,3);
 
             break ;
 
@@ -788,16 +793,6 @@
             break ;
 
          } /* fim ativa: Anula ponteiro pra elemento corrente */
-
-      /* Anula um ponteiro de origem */
-
-         case DeturpaOrigemNulo :
-         {
-
-
-            break ;
-
-         } /* fim ativa: Anula um ponteiro de origem */
 
       /* ModoDetrupar desconhecido */
 

@@ -489,6 +489,98 @@
 
    } /* Fim função: LIS  &Alterar valor do elemento corrente */
 
+   
+ #ifdef _DEBUG
+
+/***************************************************************************
+*
+*  Função: LIS  &Deturpar Lista
+*  ****/
+
+   void LIS_Deturpar( void * pListaParm ,
+                      int ModoDeturpar )
+   {
+
+	  static char EspacoLixo[ 256 ] =
+             "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ;
+            /* Espaço de dados lixo usado ao testar */
+      LIS_tpLista * pLista = NULL ;
+
+      if ( pListaParm == NULL )
+      {
+         return ;
+      } /* if */
+
+      pLista = ( LIS_tpLista * )( pListaParm ) ;
+
+      switch ( ModoDeturpar ) {
+
+      /* Anula ponteiro sucessor */
+
+         case 0 :
+         {
+
+			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 pLista->pElemCorr->pProx=NULL;
+
+            break ;
+
+         } /* fim ativa: Anula ponteiro sucessor */
+
+      /* Anula ponteiro predecessor */
+
+         case 1 :
+         {
+
+ 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 pLista->pElemCorr->pAnt=NULL;
+
+            break ;
+
+         } /* fim ativa: Anula ponteiro predecessor */
+
+	  /* Faz sucessor apontar para lixo  */
+
+         case 2 :
+         {
+
+ 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 pLista->pElemCorr->pProx=(tpElemLista *)(EspacoLixo);
+
+            break ;
+
+         } /* fim ativa: Faz sucessor apontar para lixo  */
+
+		    /* Faz predecessor apontar para lixo */
+
+         case 3 :
+         {
+
+ 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 pLista->pElemCorr->pAnt=(tpElemLista *)(EspacoLixo);
+
+            break ;
+
+         } /* fim ativa: Faz predecessor apontar para lixo */
+
+
+      /* ModoDetrupar desconhecido */
+
+         default :
+		 {
+			
+			printf("ModoDeturpar desconhecido");
+         
+            break ;
+
+         } /* fim ativa: ModoDetrupar desconhecido */
+
+      } /* fim seleciona: Raiz de GRF  &Deturpar grafo */
+
+   } /* Fim função: GRF  &Deturpar grafo */
+
+#endif
+
 /*****  Código das funções encapsuladas no módulo  *****/
 
 
