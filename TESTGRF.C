@@ -469,6 +469,28 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 	}/* fim ativa: Testar Caminhar */
 
+	/* Deturpar o grafo */
+      #ifdef _DEBUG
+
+         else if ( strcmp( ComandoTeste , DETURPAR_CMD ) == 0 )
+         {
+			GRF_tpModosDeturpacao modo;
+
+            numLidos = LER_LerParametros( "i" ,
+                                &modo ) ;
+
+            if ( ( numLidos != 1 ))
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            GRF_Deturpar( pGrafo , modo ) ;
+
+            return TST_CondRetOK ;
+
+         } /* fim ativa: Deturpar uma árvore */
+      #endif
+
 
 	return TST_CondRetNaoConhec;
 
