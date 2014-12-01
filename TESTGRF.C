@@ -500,7 +500,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                return TST_CondRetParm ;
             } /* if */
 
-            GRF_VerificarGrafo( pGrafo ) ;
+            GRF_VerificarGrafo( pGrafo , &falhasObtido ) ;
 			system("pause");
             return TST_CondRetOK ;
 
