@@ -93,17 +93,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
          LIS_CondRetFaltouMemoria ,
                /* Faltou memória ao tentar criar um elemento de lista */
-#ifdef _DEBUG
-
-		 LIS_CondRetErroEstrutura,
-			   /* Erro na estrutura da Lista */
-			   
-		 LIS_CondRetErroPonteiroSucessor,
-			   /* Erro no ponteiro sucessor do vertice corrente */
-
-		 LIS_CondRetErroPonteiroPredecessor,
-			   /* Erro no ponteiro predecessor do vertice corrente */
-#endif
 		 
    } LIS_tpCondRet ;
 

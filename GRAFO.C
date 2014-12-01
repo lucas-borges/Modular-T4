@@ -1044,7 +1044,6 @@
             {
                return GRF_CondRetErroEstrutura ;
             } /* if */
-
 		 if( VerificarArestas ( vertice ) != GRF_CondRetOK )
 		 {
 			 return GRF_CondRetErroEstrutura ;
@@ -1053,10 +1052,6 @@
 	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
 
    } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
-
-   #endif
-
-   #ifdef _DEBUG
 
    GRF_tpCondRet VerificarArestas ( tpVertice * vertice ) 
    {

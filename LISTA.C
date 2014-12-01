@@ -33,10 +33,6 @@
 #include "LISTA.h"
 #undef LISTA_OWN
 
-#ifdef _DEBUG
-#include "Generico.H"
-#endif
-
 /***********************************************************************
 *
 *  $TC Tipo de dados: LIS Elemento da lista
@@ -493,28 +489,6 @@
 
    } /* Fim função: LIS  &Alterar valor do elemento corrente */
 
-/***************************************************************************
-*
-*  Função: LIS  &Alterar Valor do Elemento Corrente
-*  ****/
-
-   LIS_tpCondRet LIS_AlterarValor( LIS_tppLista pLista ,
-                                          void * pValorNovo ) 
-   {
-	   if(pLista == NULL) /* Lista não existe */
-	   {
-		   return LIS_CondRetListaNaoExiste;
-	   }/* if */	   
-	   if(pLista->pElemCorr == NULL) /* Lista vazia */
-	   {
-		   return LIS_CondRetListaVazia;
-	   }/* if */
-	  
-	   pLista->pElemCorr->pValor=pValorNovo;
-
-	   return LIS_CondRetOK;
-
-   } /* Fim função: LIS  &Alterar valor do elemento corrente */
 /*****  Código das funções encapsuladas no módulo  *****/
 
 
@@ -600,51 +574,5 @@
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
 
-#ifdef _DEBUG
-
-   LIS_tpCondRet VerificaLista (LIS_tppLista pLista)
-   {
-	   LIS_tppLista ant = NULL;
-	   tpElemLista * aux;
-	   int elementosPercorridos = 1 ;
-
-	   if( pLista == NULL )
-	   {
-		   return LIS_CondRetOK;
-	   }/*if*/
-
-	   aux = pLista->pOrigemLista;
-
-	   if( aux->pAnt != NULL )
-	   {
-		   return LIS_CondRetErroEstrutura ;
-	   }/* if */
-
-	   do
-	   {
-		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para próximo")!=TST_CondRetOK)
-		   {
-			   return LIS_CondRetErroEstrutura ;
-		   }/*if*/
-
-		   aux=aux->pProx ;
-
-		   elementosPercorridos++;
-
-	   } while(aux!=NULL);
-
-	   if(elementosPercorridos!=pLista->numElem)
-	   {
-		   return LIS_CondRetErroEstrutura ;
-	   }/* if */
-
-	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento não é o esperado."))
-	   {
-		   return LIS_CondRetErroEstrutura ;
-	   }/* if */
-	   return LIS_CondRetOK;
-   }
-
-#endif
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
 
