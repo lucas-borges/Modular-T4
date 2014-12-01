@@ -469,6 +469,24 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_AlterarValor( LIS_tppLista pLista ,
                                           void * pValorNovo        ) ;
 
+   /***********************************************************************
+*
+*  $FC Função: LIS  &Verificar Lista
+*
+*  $ED Descrição da função
+*     
+*
+*  $EP Parâmetros
+*     $P pLista  - lista a ser verificada
+*
+***********************************************************************/
+  
+#ifdef _DEBUG
+
+   LIS_tpCondRet VerificaLista (LIS_tppLista pLista)
+
+#endif
+
 /***********************************************************************
 *
 *  $FC Função: LIS  &Deturpar Lista
@@ -477,9 +495,9 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     
 *
 *  $EP Parâmetros
-*     $P pGrafoParm  - grafo a ser deturpada
+*     $P pListaParm  - lista a ser deturpada
 *     $P ModoDeturpar - identifica como deve ser feita a deturpação,
-*                       GRF_tpModosDeturpacao identifica os modos de
+*                       LIS_tpModosDeturpacao identifica os modos de
 *                       deturpação conhecidos
 *
 ***********************************************************************/

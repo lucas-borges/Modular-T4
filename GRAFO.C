@@ -1058,6 +1058,11 @@
 
       CED_MarcarEspacoAtivo( pGrafo->vertices ) ;
 
+	  if(VerificaLista(pGrafo->vertices)!= LIS_CondRetOK)
+	  {
+		  // a lista ta errada, dou return aqui? ou checo os vértices até dar erro? que é o que ele faz a seguir se tiver certo
+	  }
+
      LIS_IrInicioLista(pGrafo->vertices);
 
 	 do
@@ -1083,6 +1088,7 @@
 		 }/* if */
 
 	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
+
 
    } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
 
