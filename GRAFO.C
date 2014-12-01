@@ -43,7 +43,7 @@
 
 		#ifdef _DEBUG
 
-         GRF_tpGrafo * pCabeca ;
+         GRF_tppGrafo * pCabeca ;
                /* Ponteiro para cabeca
                *
                *$ED Descrição
@@ -110,7 +110,7 @@
 
    #ifdef _DEBUG
 
-   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices )
+   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices );
 	#endif
 
    /*****  Código das funções exportadas pelo módulo  *****/
@@ -672,7 +672,7 @@
 
 /***************************************************************************
 *
-*  Função: ARV  &Deturpar árvore
+*  Função: GRF  &Deturpar Grafo
 *  ****/
 
    void GRF_Deturpar( void * pGrafoParm ,
@@ -695,7 +695,10 @@
          case DeturpaEliminaCorrente :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			
+			 free(pGrafo->pVerticeCorr);
+			 printf("oi\n");
+			 printf("chave: %c",*((char *)pGrafo->pVerticeCorr->pValor));
 
             break ;
 
@@ -706,7 +709,12 @@
          case DeturpaSucessorNulo :
          {
 
- 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+ 			 
+			 LIS_Deturpar(pGrafo->vertices,0);
+
+			 if(LIS_AvancarElementoCorrente(pGrafo->vertices,1)==LIS_CondRetFimLista){
+				 printf("fim \n");}
+			 
 
             break ;
 
@@ -717,7 +725,8 @@
          case DeturpaPredecessorNulo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 
+			 LIS_Deturpar(pGrafo->vertices,1);
 
             break ;
 
@@ -728,8 +737,12 @@
          case DeturpaSucessorLixo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
-
+			 
+			  LIS_Deturpar(pGrafo->vertices,2);
+			  LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+			  LIS_AvancarElementoCorrente(pGrafo->vertices,-1);
+			  printf("oi");
+	
             break ;
 
          } /* fim ativa: Faz sucessor apontar para lixo */
@@ -739,7 +752,8 @@
          case DeturpaPredecessorLixo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 
+			  LIS_Deturpar(pGrafo->vertices,3);
 
             break ;
 
@@ -761,7 +775,7 @@
          case DeturpaTipoEstrutura :
          {
 
-			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
+			//CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
 
             break ;
 
@@ -772,7 +786,23 @@
          case DeturpaDestacaVertice :
          {
 
+			 tpVertice * aux;
+			 tpVertice * aux2;
+			 void *pvalor;
 
+			 LIS_ObterValor(pGrafo->vertices,&pvalor);
+			 aux=(tpVertice *) pvalor;
+			 GRF_AlteraCorrente(pGrafo,aux->chave);
+
+			 LIS_Deturpar(pGrafo->vertices, 4);
+			 LIS_IrInicioLista(aux->arestas);
+
+			 while (LIS_AvancarElementoCorrente(aux->arestas,1)==LIS_CondRetOK)
+			 {
+				 LIS_ObterValor(aux->arestas,&pvalor);
+				 aux2=(tpVertice*)pvalor;
+				 GRF_RemoveAresta(pGrafo,aux->chave,aux2->chave);
+			 } /* while */
 
             break ;
 
@@ -788,16 +818,6 @@
             break ;
 
          } /* fim ativa: Anula ponteiro pra elemento corrente */
-
-      /* Anula um ponteiro de origem */
-
-         case DeturpaOrigemNulo :
-         {
-
-
-            break ;
-
-         } /* fim ativa: Anula um ponteiro de origem */
 
       /* ModoDetrupar desconhecido */
 

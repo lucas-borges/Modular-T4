@@ -458,6 +458,28 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_AlterarValor( LIS_tppLista pLista ,
                                           void * pValorNovo        ) ;
 
+/***********************************************************************
+*
+*  $FC Função: LIS  &Deturpar Lista
+*
+*  $ED Descrição da função
+*     
+*
+*  $EP Parâmetros
+*     $P pGrafoParm  - grafo a ser deturpada
+*     $P ModoDeturpar - identifica como deve ser feita a deturpação,
+*                       GRF_tpModosDeturpacao identifica os modos de
+*                       deturpação conhecidos
+*
+***********************************************************************/
+  
+#ifdef _DEBUG
+
+   void LIS_Deturpar( void * pListaParm ,
+                      int ModoDeturpar ) ;
+
+#endif
+
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/

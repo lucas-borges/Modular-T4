@@ -489,6 +489,113 @@
 
    } /* Fim função: LIS  &Alterar valor do elemento corrente */
 
+   
+ #ifdef _DEBUG
+
+/***************************************************************************
+*
+*  Função: LIS  &Deturpar Lista
+*  ****/
+
+   void LIS_Deturpar( void * pListaParm ,
+                      int ModoDeturpar )
+   {
+
+	  static char EspacoLixo[ 256 ] =
+             "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ;
+            /* Espaço de dados lixo usado ao testar */
+      LIS_tpLista * pLista = NULL ;
+
+      if ( pListaParm == NULL )
+      {
+         return ;
+      } /* if */
+
+      pLista = ( LIS_tpLista * )( pListaParm ) ;
+
+      switch ( ModoDeturpar ) {
+
+      /* Anula ponteiro sucessor */
+
+         case 0 :
+         {
+
+			  printf("%p\n",pLista->pElemCorr->pProx);
+			 pLista->pElemCorr->pProx=NULL;
+			 printf("%p\n",pLista->pElemCorr->pProx);
+
+            break ;
+
+         } /* fim ativa: Anula ponteiro sucessor */
+
+      /* Anula ponteiro predecessor */
+
+         case 1 :
+         {
+
+ 			  printf("%p\n",pLista->pElemCorr->pAnt);
+			 pLista->pElemCorr->pAnt=NULL;
+			 printf("%p\n",pLista->pElemCorr->pAnt);
+
+            break ;
+
+         } /* fim ativa: Anula ponteiro predecessor */
+
+	  /* Faz sucessor apontar para lixo  */
+
+         case 2 :
+         {
+
+ 			 printf("%p\n",pLista->pElemCorr->pProx);
+			 pLista->pElemCorr->pProx=(tpElemLista *)(EspacoLixo);
+			 printf("%p\n",pLista->pElemCorr->pProx);
+
+            break ;
+
+         } /* fim ativa: Faz sucessor apontar para lixo  */
+
+	  /* Faz predecessor apontar para lixo */
+
+         case 3 :
+         {
+
+ 			
+			 pLista->pElemCorr->pAnt=(tpElemLista *)(EspacoLixo);
+
+            break ;
+
+         } /* fim ativa: Faz predecessor apontar para lixo */
+
+	   /* Destaca vértice */
+
+		 case 4 :
+         {
+
+ 			pLista->pElemCorr->pValor=NULL;
+			LIS_ExcluirElemento(pLista);
+
+            break ;
+
+         } /* fim ativa: Destaca vértice */
+
+
+      /* ModoDetrupar desconhecido */
+
+         default :
+		 {
+			
+			printf("ModoDeturpar desconhecido");
+         
+            break ;
+
+         } /* fim ativa: ModoDetrupar desconhecido */
+
+      } /* fim seleciona: Raiz de GRF  &Deturpar grafo */
+
+   } /* Fim função: GRF  &Deturpar grafo */
+
+#endif
+
 /*****  Código das funções encapsuladas no módulo  *****/
 
 
