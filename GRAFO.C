@@ -777,7 +777,23 @@
          case DeturpaDestacaVertice :
          {
 
+			 tpVertice * aux=pGrafo->pVerticeCorr;
+			 tpVertice * aux2;
+			 void *pvalor;
+			 LIS_ObterValor(pGrafo->vertices,&pvalor);
 
+			 if(pvalor!=aux){
+				 printf("ooops algo deu errado, correntes diferentes\n");
+			 }
+			 LIS_Deturpar(pGrafo->vertices, 4);
+
+			 LIS_IrInicioLista(aux->arestas);
+			 while (LIS_AvancarElementoCorrente(aux->arestas,1)!=LIS_CondRetFimLista)
+			 {
+				 LIS_ObterValor(aux->arestas,&pvalor);
+				 aux2=(tpVertice*)pvalor;
+				 GRF_RemoveAresta(pGrafo,aux->chave,aux2->chave);
+			 } /* while */
 
             break ;
 

@@ -551,7 +551,7 @@
 
          } /* fim ativa: Faz sucessor apontar para lixo  */
 
-		    /* Faz predecessor apontar para lixo */
+	  /* Faz predecessor apontar para lixo */
 
          case 3 :
          {
@@ -562,6 +562,18 @@
             break ;
 
          } /* fim ativa: Faz predecessor apontar para lixo */
+
+	   /* Destaca vértice */
+
+		 case 4 :
+         {
+
+ 			pLista->pElemCorr->pValor=NULL;
+			LIS_ExcluirElemento(pLista);
+
+            break ;
+
+         } /* fim ativa: Destaca vértice */
 
 
       /* ModoDetrupar desconhecido */

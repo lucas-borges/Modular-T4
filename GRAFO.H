@@ -607,7 +607,7 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
 /***********************************************************************
 *
-*  $FC Função: GRF  &Verificar uma árvore
+*  $FC Função: GRF  &Verificar um grafo
 *
 *  $ED Descrição da função
 *     Função da interface de teste.
