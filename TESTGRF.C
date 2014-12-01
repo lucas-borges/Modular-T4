@@ -488,7 +488,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
             return TST_CondRetOK ;
 
-         } /* fim ativa: Deturpar uma árvore */
+         } /* fim ativa: Deturpar o grafo */
       #endif
 
 
