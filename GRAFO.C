@@ -29,7 +29,7 @@
    #include   "Generico.h"
    #include   "Conta.h"
    #include   "cespdin.h"
-  // #include   "..\\tabelas\\IdTiposEspaco.def" descobrir o que é e como usa
+   #include   "IdTiposEspaco.def"
 #endif
 
 /***********************************************************************
@@ -129,6 +129,10 @@
 		   return GRF_CondRetFaltouMemoria;
 	   } /* if */
 
+	   #ifdef _DEBUG
+         CED_DefinirTipoEspaco( ppGrafo, GRF_TipoEspacoCabeca ) ;
+      #endif
+
 	   LIS_CriarLista ( &( ( * ppGrafo ) -> vertices ) , DestruirVertice ) ; //ao destruir a lista de vértices tem que destruir o vértice
 	   (*ppGrafo)->ExcluirValor=ExcluirValor;
 	   (*ppGrafo)->pVerticeCorr=NULL;
@@ -167,7 +171,10 @@
 		   return GRF_CondRetFaltouMemoria;
 	   } /* if */
 
-	   
+	   #ifdef _DEBUG
+         CED_DefinirTipoEspaco( vertice, GRF_TipoEspacoVertice ) ;
+      #endif
+
 	   vertice->pValor = pValor;
 	   vertice->ExcluirValor=pGrafo->ExcluirValor;
 	   LIS_CriarLista ( &vertice->arestas , NULL ); //NULL pois a lista vai apontar para outros vértices e não queremos que 
@@ -1059,6 +1066,12 @@
 		 
 		 vertice = (tpVertice*)aux;
 
+		 if ( TST_CompararInt( GRF_TipoEspacoVertice ,
+              CED_ObterTipoEspaco( vertice ) ,
+              "Tipo do espaço de dados não é vertice de grafo." ) != TST_CondRetOK ) 
+         {
+            return GRF_CondRetErroEstrutura ;
+         } /* if */
 		 if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
                  "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
             {

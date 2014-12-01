@@ -1,0 +1,24 @@
+#if ! defined( TIPOS_GRAFO_ )
+#define TIPOS_GRAFO_
+/***************************************************************************
+*
+*  $MCD Arquivo de definição: TiposEspacosArvore.def
+*
+*  Projeto: Automatização de testes
+*  Autores: csgslb
+*
+*  $ED Descrição do arquivo
+*     Este arquivo declara os identificadores de tipos dos espaços de dados
+*		utilizados pelo módulo grafo. O módulo obedece o padrão estabelecido
+*     pelo módulo CNTESPAC. Ou seja, contém uma seqüência de declaradores
+*     a serem incluídos em um enum. Cada declarador corresponde a um dos
+*     tipos de espaço de dados.
+*
+***************************************************************************/
+
+      GRF_TipoEspacoCabeca , 
+      GRF_TipoEspacoVertice     ,
+
+/********** Fim do arquivo de definição: TiposEspacosGrafo.def  **********/
+
+#endif
