@@ -707,7 +707,7 @@
 
 	   do
 	   {
-		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para pr�ximo")!=TST_CondRetOK)
+		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para proximo")!=TST_CondRetOK)
 		   {
 			   return LIS_CondRetErroEstrutura ;
 		   }/*if*/
@@ -723,7 +723,7 @@
 		   return LIS_CondRetErroEstrutura ;
 	   }/* if */
 
-	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento n�o � o esperado."))
+	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado."))
 	   {
 		   return LIS_CondRetErroEstrutura ;
 	   }/* if */
