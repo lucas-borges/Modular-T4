@@ -43,7 +43,7 @@
 
 		#ifdef _DEBUG
 
-         GRF_tpGrafo * pCabeca ;
+         GRF_tppGrafo * pCabeca ;
                /* Ponteiro para cabeca
                *
                *$ED Descrição
