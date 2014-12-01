@@ -665,7 +665,7 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
 #ifdef _DEBUG
 
-   GRF_tpCondRet GRF_VerificarVertice( void * pVerticeParm ) ;
+   GRF_tpCondRet VerificarVertices( GRF_tppGrafo pGrafo );
 
 #endif
 
