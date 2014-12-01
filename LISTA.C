@@ -520,8 +520,9 @@
          case 0 :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			  printf("%p\n",pLista->pElemCorr->pProx);
 			 pLista->pElemCorr->pProx=NULL;
+			 printf("%p\n",pLista->pElemCorr->pProx);
 
             break ;
 
@@ -532,8 +533,9 @@
          case 1 :
          {
 
- 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+ 			  printf("%p\n",pLista->pElemCorr->pAnt);
 			 pLista->pElemCorr->pAnt=NULL;
+			 printf("%p\n",pLista->pElemCorr->pAnt);
 
             break ;
 
@@ -544,8 +546,9 @@
          case 2 :
          {
 
- 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+ 			 printf("%p\n",pLista->pElemCorr->pProx);
 			 pLista->pElemCorr->pProx=(tpElemLista *)(EspacoLixo);
+			 printf("%p\n",pLista->pElemCorr->pProx);
 
             break ;
 
@@ -556,7 +559,7 @@
          case 3 :
          {
 
- 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+ 			
 			 pLista->pElemCorr->pAnt=(tpElemLista *)(EspacoLixo);
 
             break ;

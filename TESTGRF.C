@@ -88,7 +88,7 @@
 #include    <string.h>
 #include    <stdio.h>
 #include    <malloc.h>
-
+#include <stdlib.h>
 #include    "TST_Espc.h"
 
 #include    "Generico.h"
@@ -485,7 +485,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             } /* if */
 
             GRF_Deturpar( pGrafo , modo ) ;
-
+			system("pause");
             return TST_CondRetOK ;
 
          } /* fim ativa: Deturpar o grafo */

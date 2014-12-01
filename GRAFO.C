@@ -695,8 +695,10 @@
          case DeturpaEliminaCorrente :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			
 			 free(pGrafo->pVerticeCorr);
+			 printf("oi\n");
+			 printf("chave: %c",*((char *)pGrafo->pVerticeCorr->pValor));
 
             break ;
 
@@ -707,8 +709,12 @@
          case DeturpaSucessorNulo :
          {
 
- 			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+ 			 
 			 LIS_Deturpar(pGrafo->vertices,0);
+
+			 if(LIS_AvancarElementoCorrente(pGrafo->vertices,1)==LIS_CondRetFimLista){
+				 printf("fim \n");}
+			 
 
             break ;
 
@@ -719,7 +725,7 @@
          case DeturpaPredecessorNulo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 
 			 LIS_Deturpar(pGrafo->vertices,1);
 
             break ;
@@ -731,8 +737,11 @@
          case DeturpaSucessorLixo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 
 			  LIS_Deturpar(pGrafo->vertices,2);
+			  LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+			  LIS_AvancarElementoCorrente(pGrafo->vertices,-1);
+			  printf("oi");
 	
             break ;
 
@@ -743,7 +752,7 @@
          case DeturpaPredecessorLixo :
          {
 
-			 /**** QUE RAIOS E PRA FAZER AQUI?? *****/
+			 
 			  LIS_Deturpar(pGrafo->vertices,3);
 
             break ;
@@ -766,7 +775,7 @@
          case DeturpaTipoEstrutura :
          {
 
-			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
+			//CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
 
             break ;
 
@@ -777,18 +786,18 @@
          case DeturpaDestacaVertice :
          {
 
-			 tpVertice * aux=pGrafo->pVerticeCorr;
+			 tpVertice * aux;
 			 tpVertice * aux2;
 			 void *pvalor;
+
 			 LIS_ObterValor(pGrafo->vertices,&pvalor);
+			 aux=(tpVertice *) pvalor;
+			 GRF_AlteraCorrente(pGrafo,aux->chave);
 
-			 if(pvalor!=aux){
-				 printf("ooops algo deu errado, correntes diferentes\n");
-			 }
 			 LIS_Deturpar(pGrafo->vertices, 4);
-
 			 LIS_IrInicioLista(aux->arestas);
-			 while (LIS_AvancarElementoCorrente(aux->arestas,1)!=LIS_CondRetFimLista)
+
+			 while (LIS_AvancarElementoCorrente(aux->arestas,1)==LIS_CondRetOK)
 			 {
 				 LIS_ObterValor(aux->arestas,&pvalor);
 				 aux2=(tpVertice*)pvalor;
