@@ -110,10 +110,7 @@
 
    #ifdef _DEBUG
 
-   static GRF_tpCondRet VerificarVertices( GRF_tppGrafo pGrafo );
-   static GRF_tpCondRet VerificarArestas ( tpVertice * vertice ) ;
-   static GRF_tpCondRet GRF_VerificarCabeca( void * pCabecaParm );
-
+   static GRF_tpCondRet VerificarVertices( LIS_tppLista vertices );
 	#endif
 
    /*****  Código das funções exportadas pelo módulo  *****/

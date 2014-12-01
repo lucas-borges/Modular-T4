@@ -625,6 +625,53 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
 /***********************************************************************
 *
+*  $FC Função: GRF  &Verificar um nó cabeça
+*
+*  $ED Descrição da função
+*     Função da interface de teste.
+*     Verifica a integridade de um nó cabeça da árvore.
+*
+*  $EP Parâmetros
+*     $P pCabecaParm - ponteiro para um espaço que deveria ser uma cabeça
+*                      de árvore.
+*
+*  $FV Valor retornado
+*     Condição de retorno de teste
+*
+***********************************************************************/
+
+#ifdef _DEBUG
+
+   GRF_tpCondRet GRF_VerificarCabeca( void * pCabecaParm ) ;
+
+#endif
+
+
+/***********************************************************************
+*
+*  $FC Função: GRF  &Verificar um nó de estrutura
+*
+*  $ED Descrição da função
+*     Função da interface de teste.
+*     Verifica a integridade de um nó estrutural da árvore.
+*
+*  $EP Parâmetros
+*     $P pNoParm - ponteiro para espaço que deveria ser um nó estrutural.
+*
+*  $FV Valor retornado
+*     Número de erros encontrados.
+*
+***********************************************************************/
+
+#ifdef _DEBUG
+
+   GRF_tpCondRet GRF_VerificarVertice( void * pVerticeParm ) ;
+
+#endif
+
+
+/***********************************************************************
+*
 *  $FC Função: GRF  &Deturpar Grafo
 *
 *  $ED Descrição da função
