@@ -117,10 +117,8 @@ GRF_tppGrafo pGrafo;
 
 /* os comandos a seguir somente operam em modo _DEBUG */
 
-const char VER_CABECA_CMD[ ] = "=verificarcabeca" ;
-const char VER_GRAFO_CMD[ ] = "=verificargrafo" ;
-const char VER_MEMORIA_CMD[ ] = "=verificarmemoria" ;
-const char DETURPAR_CMD[ ]   = "=deturpar" ;
+const char VERIFICAR_CMD[ ]   = "=verificar" ;
+const char DETURPAR_CMD [ ]   = "=deturpar" ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -485,6 +483,24 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             } /* if */
 
             GRF_Deturpar( pGrafo , modo ) ;
+			system("pause");
+            return TST_CondRetOK ;
+
+         } /* fim ativa: Deturpar o grafo */
+
+	else if ( strcmp( ComandoTeste , VERIFICAR_CMD ) == 0 )
+         {
+			int falhasEsperado,falhasObtido;
+
+            numLidos = LER_LerParametros( "i" ,
+                                &falhasEsperado ) ;
+
+            if ( ( numLidos != 1 ))
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            GRF_VerificarGrafo( pGrafo ) ;
 			system("pause");
             return TST_CondRetOK ;
 
