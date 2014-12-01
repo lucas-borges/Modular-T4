@@ -483,7 +483,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
   
 #ifdef _DEBUG
 
-   LIS_tpCondRet VerificaLista (LIS_tppLista pLista)
+   LIS_tpCondRet VerificaLista (LIS_tppLista pLista);
 
 #endif
 
