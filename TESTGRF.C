@@ -88,7 +88,6 @@
 #include    <string.h>
 #include    <stdio.h>
 #include    <malloc.h>
-#include <stdlib.h>
 #include    "TST_Espc.h"
 
 #include    "Generico.h"
@@ -516,7 +515,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			} /* if */
 			
 			falhasObtido = CNT_ObterContagem ( CONTADOR_FALHAS_ESTRUTURA ) ;
-
+			
             return TST_CompararInt ( falhasEsperado , falhasObtido , "Diferenca entre numero de falhas esperado e numero de falhas obtido." ) ;
 
          } /* fim ativa: Verificar o grafo */

@@ -343,7 +343,7 @@
 	   {
 		   return ;
 	   } /* if */
-
+	   
 	   LIS_DestruirLista(pGrafo->vertices);
 	   free(pGrafo);
 
