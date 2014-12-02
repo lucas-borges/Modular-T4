@@ -126,10 +126,6 @@
    GRF_tpCondRet GRF_CriarGrafo ( GRF_tppGrafo * ppGrafo , void ( * ExcluirValor ) ( void * pValor ) )
    {
 
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_CriarGrafo" ) ;
-      #endif
-
 	   *ppGrafo= ( GRF_tpGrafo * ) malloc ( sizeof ( GRF_tpGrafo )) ;
 	   if ( *ppGrafo == NULL )
 	   {
@@ -159,10 +155,6 @@
 
 	   int Ret;
 	   tpVertice* vertice;
-	   
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_CriarVertice" ) ;
-      #endif
 
 	   if(pGrafo==NULL)
 	   {
@@ -224,10 +216,6 @@
 	   LIS_tpCondRet lis_ret;
 	   tpVertice * verticeA, * verticeB;
 	   void * pTemp;
-
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_CriarAresta" ) ;
-      #endif
 
 	   if(pGrafo==NULL)
 	   {
@@ -293,10 +281,6 @@
 
 	   tpVertice * verticeA, *verticeB;
 	   void * pTemp;
-
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_RemoveAresta" ) ;
-      #endif
 	   
 	   if(pGrafo==NULL)
 	   {
@@ -353,10 +337,7 @@
    
    void GRF_DestroiGrafo (GRF_tppGrafo pGrafo)
    {
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_DestroiGrafo" ) ;
-      #endif
-
+	  
 	   if(pGrafo==NULL)
 	   {
 		   return ;
@@ -375,10 +356,6 @@
 
    GRF_tpCondRet GRF_EsvaziaGrafo ( GRF_tppGrafo pGrafo )
    {
-
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_EsvaziaGrafo" ) ;
-      #endif
 
 	   if ( pGrafo == NULL )
 	   {
@@ -403,10 +380,6 @@
 
 	   tpVertice * origem , * destino , * aux ;
 	   void * temp;
-
-	   #ifdef _DEBUG
-         CNT_CONTAR( "GRF_ObtemCaminho" ) ;
-      #endif
 	   
 	   if ( pGrafo == NULL )
 	   {
@@ -693,11 +666,21 @@
 	 
 	  if( pGrafoParm == NULL )
 	  {
+		  
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_GrafoNull" ) ;
+      #endif
+
 		  return GRF_CondRetOK ;
 	  } /* if */
 
       if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
       {
+		  
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_ErroCabeca" ) ;
+      #endif
+
          return GRF_CondRetErroEstrutura ;
       } /* if */
 	  printf("verificar grafo 2\n");
@@ -1025,6 +1008,9 @@
 
          if ( ! CED_VerificarEspaco( pCabecaParm , NULL ))
          {
+			 
+			CNT_CONTAR( "GRF_ErroEspacoCabeca" ) ;
+   
             TST_NotificarFalha( "Controle do espaço acusou erro." ) ;
 			CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
             return GRF_CondRetErroEstrutura ;
@@ -1034,6 +1020,8 @@
               CED_ObterTipoEspaco( pCabecaParm ) ,
               "Tipo do espaço de dados não é cabeça de grafo." ) != TST_CondRetOK ) 
          {
+			 CNT_CONTAR( "GRF_ErroTipoEspacoCabeca" ) ;
+
              CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 			 return GRF_CondRetErroEstrutura ;
          } /* if */
@@ -1048,12 +1036,17 @@
 			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
                  "Vértice corrente não aponta para cabeça." ) != TST_CondRetOK )
             {
+				CNT_CONTAR( "GRF_ErroPonteiroProCabeca" ) ;
+
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
                return GRF_CondRetErroEstrutura ;
             } /* if */
           
          } /* if */
 		   printf("verifica_cabeca 3\n");
+
+		   CNT_CONTAR( "GRF_CabecaOK" ) ;
+
       return GRF_CondRetOK ;
 
    } /* Fim função: GRF  &Verificar um nó cabeça */

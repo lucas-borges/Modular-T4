@@ -5,10 +5,10 @@
 //
 ///////////////////////////////////////////////
     
-    GRF_CriarGrafo
-    GRF_CriarVertice
-    GRF_CriarAresta
-    GRF_RemoveAresta
-    GRF_DestroiGrafo
-    GRF_EsvaziaGrafo
-    GRF_ObtemCaminho
+    GRF_GrafoNull
+    GRF_ErroCabeca
+    GRF_ErroEspacoCabeca
+    GRF_ErroTipoEspacoCabeca
+    GRF_ErroPonteiroProCabeca
+    GRF_CabecaOK
+    
