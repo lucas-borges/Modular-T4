@@ -1,0 +1,65 @@
+// Script:    TesteVerifGrafo.script
+// Autor:     Clara Szwarcman, Guilherme Simas e Lucas Borges
+// Data:      01/31/2014
+// Propósito: Testar deturpações e a verificação do módulo GRAFO.C
+
+== Declarar condições de retorno
+=declararparm   OK                    int  0
+=declararparm   VerticeJaExiste       int  1
+=declararparm   VerticeNaoExiste      int  2
+=declararparm   ArestaJaExiste        int  3
+=declararparm   ArestaNaoExiste       int  4
+=declararparm   GrafoNaoExiste        int  5
+=declararparm   FaltouMemoria         int  6
+=declararparm   ErroAoObterValor      int  7
+=declararparm   VerticesDesconexos    int  8
+
+== Declarar modos de deturpar
+=declararparm EliminaCorrente 		int 1
+=declararparm SucessorNulo			int 2
+=declararparm PredecessorNulo		int 3
+=declararparm SucessorLixo 			int 4
+=declararparm PredecessorLixo 		int 5
+=declararparm ValorNulo 			int 6
+=declararparm TipoEstrutura 		int 7
+=declararparm DestacaVertice 		int 8
+=declararparm CorrenteNulo 			int 9
+
+== Declarar critérios de exibição
+=declararparm ExibirTodos 			int 1
+=declararparm ExibirAtivos 			int 2
+=declararparm ExibirInativos		int 3
+
+==Inicializar contagem
+=inicializarcontadores "Grafo.count"
+=zerartodoscontadores
+=iniciarcontagem
+=contagemcontador "FalhasEstrutura" 0
+
+
+==Inicializar controle de espaços
+=obternumeroespacosalocados  0
+
+== Criar Grafo para modo EliminaCorrente
+=criargrafo OK
+=obternumeroespacosalocados  1
+=inserevertice 1 'a' OK
+=obternumeroespacosalocados  2
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Verificar grafo
+=verificar 1
+//=exibirtodosespacos ExibirTodos
+//=exibirtodosespacos ExibirAtivos
+//=exibirtodosespacos ExibirInativos
+//=verificartodosespacos 0
+=contagemcontador "FalhasEstrutura" 0
+
+
+== Destruir grafo
+=destroigrafo OK
