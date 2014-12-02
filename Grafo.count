@@ -11,4 +11,9 @@
     GRF_ErroTipoEspacoCabeca
     GRF_ErroPonteiroProCabeca
     GRF_CabecaOK
-    
+    GRF_VerticesOK
+    GRF_ErroListaVertices
+    GRF_ErroTipoEspacoVertice
+    GRF_ErroListaArestas
+    GRF_ArestasOK
+    GRF_ErroArestaDirecionada
