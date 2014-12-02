@@ -1,0 +1,251 @@
+// Script:    TesteVerifGrafo.script
+// Autor:     Clara Szwarcman, Guilherme Simas e Lucas Borges
+// Data:      01/31/2014
+// Propósito: Testar deturpações e a verificação do módulo GRAFO.C
+
+== Declarar condições de retorno
+=declararparm   OK                    int  0
+=declararparm   VerticeJaExiste       int  1
+=declararparm   VerticeNaoExiste      int  2
+=declararparm   ArestaJaExiste        int  3
+=declararparm   ArestaNaoExiste       int  4
+=declararparm   GrafoNaoExiste        int  5
+=declararparm   FaltouMemoria         int  6
+=declararparm   ErroAoObterValor      int  7
+=declararparm   VerticesDesconexos    int  8
+
+== Declarar modos de deturpar
+=declararparm EliminaCorrente 		int 1
+=declararparm SucessorNulo			int 2
+=declararparm PredecessorNulo		int 3
+=declararparm SucessorLixo 			int 4
+=declararparm PredecessorLixo 		int 5
+=declararparm ValorNulo 			int 6
+=declararparm TipoEstrutura 		int 7
+=declararparm DestacaVertice 		int 8
+=declararparm CorrenteNulo 			int 9
+
+== Declarar critérios de exibição
+=declararparm ExibirTodos 			int 1
+=declararparm ExibirAtivos 			int 2
+=declararparm ExibirInativos		int 3
+
+==Declarar valores
+=declararparm FALSE					int 0
+=declararparm TRUE		 			int 1
+
+==Inicializar contagem
+=inicializarcontadores "Grafo.count"
+=zerartodoscontadores
+=iniciarcontagem
+=contagemtotal 0
+
+==Inicializar controle de espaços
+=obternumeroespacosalocados  0
+
+== Criar Grafo 
+=criargrafo OK
+=obternumeroespacosalocados  2
+=verificar 0
+
+=inserevertice 1 'a' OK
+=obternumeroespacosalocados  5
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Verificar grafo correto
+=verificar 0
+
+== Exibir espaços inativos
+=exibirtodosespacos ExibirInativos
+
+==Verificar espaços
+=verificartodosespacos TRUE
+
+== Destroi grafo (grafo sem deturpaçoes é destuido completamente)
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 2
+=verificar 2
+=AceitaFalhasAcumuladas 1
+
+== Destroi grafo  (não é possível destruir tudo por perda de ponteiros, ainda alocados:5)
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 3
+=verificar 3
+=AceitaFalhasAcumuladas 1
+
+
+== Destroi grafo 
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 4
+=verificar 3
+=AceitaFalhasAcumuladas 3
+
+//==Destroi (não pode destruir por perda de ponteiros, espacos ainda alocados: 22)
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 5
+=verificar 6
+=AceitaFalhasAcumuladas 1
+
+
+== Destroi grafo 
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 6
+=verificar 7
+=AceitaFalhasAcumuladas 1
+
+
+== Destroi grafo (não é possível destruir tudo por perda de ponteiros, ainda alocados:26)
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 7
+=verificar 8
+=AceitaFalhasAcumuladas 1
+
+
+== Destroi grafo 
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar //tem que ver lista de espaços, possui 1 inativos OK
+=deturpar 8
+=verificar 8
+=obternumeroregra ExibirInativos 1
+
+== Destroi grafo (não é possível destruir tudo por perda de ponteiros, ainda alocados:30)
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 9
+=verificar 8
+=AceitaFalhasAcumuladas 2
+
+== Destroi grafo 
+=destroigrafo OK
+
+== Criar Grafo 
+=criargrafo OK
+
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar 1
+=verificar 8
+=AceitaFalhasAcumuladas 2
+
+//== Destroi grafo ((não é possível destruir tudo por perda de ponteiros, ainda alocados:46)
+
+
+== Terminar controlar contadores
+=pararcontagem
+
+
+== Terminar contagem
+=terminarcontadores

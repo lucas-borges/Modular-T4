@@ -670,6 +670,7 @@
    {
 
       GRF_tppGrafo pGrafo = NULL ;
+	  int CondRet;
 	  printf("verificar grafo 1\n");
 	 
 	  if( pGrafoParm == NULL )
@@ -680,8 +681,12 @@
 
 		  return GRF_CondRetOK ;
 	  } /* if */
-
-      if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
+	  CondRet=GRF_VerificarCabeca( pGrafoParm );
+		if(CondRet ==  GRF_CondRetGrafoVazio)
+		{
+			return GRF_CondRetOK;
+		}
+      if ( CondRet != GRF_CondRetOK )
       {
 		  
 	   
@@ -1066,13 +1071,19 @@
   printf("verifica_cabeca 2\n");
       /* Verifica corrente */
  
-		if((pGrafo->pVerticeCorr == NULL) && ( LIS_ObterValor(pGrafo->vertices,&pValor)!=LIS_CondRetListaVazia))
+		if((pGrafo->pVerticeCorr == NULL))
 		{
-			
-			CNT_CONTAR("GRF_ErroPonteiroCorrenteListaVazia");
-			 CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA);
-			 TST_NotificarFalha("Corrente NULL mas grafo não é vazio");
-			 return GRF_CondRetErroEstrutura;
+			if (LIS_ObterValor(pGrafo->vertices,&pValor)!=LIS_CondRetListaVazia)
+			{
+				CNT_CONTAR("GRF_ErroPonteiroCorrenteListaVazia");
+				 CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA);
+				 TST_NotificarFalha("Corrente NULL mas grafo não é vazio");
+				 return GRF_CondRetErroEstrutura;
+			}
+			else
+			{
+				return GRF_CondRetGrafoVazio;
+			} /* if */
 		}/* if */
 		 if ( pGrafo->pVerticeCorr != NULL )
          {

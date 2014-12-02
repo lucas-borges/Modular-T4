@@ -80,8 +80,10 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 		 GRF_CondRetErroInserirAresta,
 			  /* erro ao inserir a aresta */
 
-         GRF_CondRetErroEstrutura
+         GRF_CondRetErroEstrutura,
 			/* erro na estrutura do grafo*/
+
+			GRF_CondRetGrafoVazio
 
 		 
    } GRF_tpCondRet ;
