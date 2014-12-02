@@ -790,7 +790,7 @@
          case DeturpaTipoEstrutura :
          {
 
-			//CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_INVALIDO ) ;
+			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_NULO ) ;
 
             break ;
 
