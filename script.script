@@ -30,6 +30,10 @@
 =declararparm ExibirAtivos 			int 2
 =declararparm ExibirInativos		int 3
 
+==Declarar valores
+=declararparm FALSE					int 0
+=declararparm TRUE		 			int 1
+
 ==Inicializar contagem
 =inicializarcontadores "Grafo.count"
 =zerartodoscontadores
@@ -64,7 +68,7 @@
 =exibirtodosespacos ExibirInativos
 
 ==Verificar espaços
-=verificartodosespacos 0
+=verificartodosespacos TRUE
 
 == Deturpar 
 =deturpar EliminaCorrente
