@@ -125,9 +125,6 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
          DeturpaCorrenteNulo          =  9 ,
                /* Atribui NULL ao ponteiro corrente */
 
-         DeturpaOrigemNulo            = 10 ,
-               /* Atribui NULL a um ponteiro de origem */
-
 
    } GRF_tpModosDeturpacao ;
 

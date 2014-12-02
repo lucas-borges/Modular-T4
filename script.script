@@ -1,0 +1,195 @@
+// Script:    TesteVerifGrafo.script
+// Autor:     Clara Szwarcman, Guilherme Simas e Lucas Borges
+// Data:      01/31/2014
+// Propósito: Testar deturpações e a verificação do módulo GRAFO.C
+
+== Declarar condições de retorno
+=declararparm   OK                    int  0
+=declararparm   VerticeJaExiste       int  1
+=declararparm   VerticeNaoExiste      int  2
+=declararparm   ArestaJaExiste        int  3
+=declararparm   ArestaNaoExiste       int  4
+=declararparm   GrafoNaoExiste        int  5
+=declararparm   FaltouMemoria         int  6
+=declararparm   ErroAoObterValor      int  7
+=declararparm   VerticesDesconexos    int  8
+
+== Declarar modos de deturpar
+=declararparm EliminaCorrente 		int 1
+=declararparm SucessorNulo			int 2
+=declararparm PredecessorNulo		int 3
+=declararparm SucessorLixo 			int 4
+=declararparm PredecessorLixo 		int 5
+=declararparm ValorNulo 			int 6
+=declararparm TipoEstrutura 		int 7
+=declararparm DestacaVertice 		int 8
+=declararparm CorrenteNulo 			int 9
+
+==Inicializar contagem
+=inicializarcontadores "contadores.count"
+=zerartodoscontadores
+=iniciarcontagem
+=numcontadores 
+
+== Criar Grafo para modo EliminaCorrente
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Verificar grafo
+=verificar 0
+
+== Deturpar 
+=deturpar EliminaCorrente
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo SucessorNulo
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar SucessorNulo
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo PredecessorNulo
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar PredecessorNulo
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo SucessorLixo 
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar SucessorLixo 
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo PredecessorLixo 
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar PredecessorLixo 
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo ValorNulo 
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar ValorNulo 
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo TipoEstrutura
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar TipoEstrutura
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo DestacaVertice 
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar DestacaVertice 
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Criar Grafo para modo CorrenteNulo
+=criargrafo OK
+=inserevertice 1 'a' OK
+=inserevertice 2 'b' OK
+=inserevertice 3 'c' OK
+=criaaresta 1 2 OK
+=criaaresta 2 3 OK
+=criaaresta 3 1 OK
+=alteracorrente 2 OK
+
+== Deturpar 
+=deturpar CorrenteNulo
+=verificar 1
+
+== Destruir grafo
+=destroigrafo OK
+
+== Terminar controlar contadores
+=pararcontagem
+=verificarcontagens    0
+
+== Terminar contagem
+=terminarcontadores
