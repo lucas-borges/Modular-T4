@@ -1037,7 +1037,7 @@
 			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
                  "Vértice corrente não aponta para cabeça." ) != TST_CondRetOK )
             {
-				CNT_CONTAR( "GRF_ErroPonteiroProCabeca" ) ;
+				CNT_CONTAR( "GRF_ErroPonteiroCorrenteProCabeca" ) ;
 
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
                return GRF_CondRetErroEstrutura ;
@@ -1080,7 +1080,7 @@
 	  printf("verificar vertice 1\n");
       if ( pGrafo->vertices == NULL )
       {
-		  CNT_CONTAR( "GRF_VerticesOK" ) ;
+		  CNT_CONTAR( "GRF_VerticesVazios" ) ;
          return GRF_CondRetOK ;
       } /* if */
 
@@ -1119,6 +1119,8 @@
             } /* if */
 		 else if( VerificarArestas ( vertice ) != GRF_CondRetOK )
 		 {
+			 CNT_CONTAR("GRF_ErroArestas");
+
 			 return GRF_CondRetErroEstrutura ;
 		 }/* if */
 
@@ -1146,7 +1148,7 @@
 
 	   if( LIS_IrInicioLista (vertice->arestas) == LIS_CondRetListaNaoExiste )
 	   {
-		   CNT_CONTAR( "GRF_ArestasOK" ) ;
+		   CNT_CONTAR( "GRF_ArestasVazias" ) ;
 
 		   return GRF_CondRetOK;
 	   }/* if */

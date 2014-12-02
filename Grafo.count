@@ -9,13 +9,17 @@
     GRF_ErroCabeca
     GRF_ErroEspacoCabeca
     GRF_ErroTipoEspacoCabeca
+    GRF_ErroPonteiroCorrenteProCabeca
     GRF_ErroPonteiroProCabeca
     GRF_CabecaOK
     GRF_VerticesOK
+    GRF_VerticesVazios
     GRF_ErroListaVertices
     GRF_ErroTipoEspacoVertice
     GRF_ErroListaArestas
     GRF_ArestasOK
+    GRF_ArestasVazias
+    GRF_ErroArestas
     GRF_ErroArestaDirecionada
     LIS_ErroPrimeiro
     LIS_ErroProximo
