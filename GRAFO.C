@@ -1079,13 +1079,17 @@
 	  printf("verificar vertice 1\n");
       if ( pGrafo->vertices == NULL )
       {
+		  CNT_CONTAR( "GRF_VerticesOK" ) ;
          return GRF_CondRetOK ;
       } /* if */
 
       CED_MarcarEspacoAtivo( pGrafo->vertices ) ;
 	  printf("verificar vertice 2\n");
+
 	  if(VerificaLista(pGrafo->vertices) != LIS_CondRetOK)
 	  {
+		  CNT_CONTAR( "GRF_ErroListaVertices" ) ;
+
 		  return GRF_CondRetErroEstrutura ;
 	  } /* if */
 
@@ -1101,11 +1105,15 @@
               CED_ObterTipoEspaco( vertice ) ,
               "Tipo do espaço de dados não é vertice de grafo." ) != TST_CondRetOK ) 
          {
+			 CNT_CONTAR( "GRF_ErroTipoEspacoVertice" ) ;
+
             CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
          } /* if */
 		 else if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
                  "Vértice não aponta para cabeça." ) != TST_CondRetOK )
             {
+				CNT_CONTAR( "GRF_ErroPonteiroProCabeca" ) ;
+
                CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
             } /* if */
 		 else if( VerificarArestas ( vertice ) != GRF_CondRetOK )
@@ -1115,9 +1123,12 @@
 
 	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
 	 printf("verificar vertice 4\n");
+
+	 CNT_CONTAR( "GRF_VerticesOK" ) ;
+
 	 return GRF_CondRetOK;
 
-   } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
+   } /* Fim função: GRF  -Explorar verificando os vértices de uma grafo */
 
    GRF_tpCondRet VerificarArestas ( tpVertice * vertice ) 
    {
@@ -1127,11 +1138,15 @@
 
 	   if( VerificaLista(vertice->arestas) != LIS_CondRetOK )
 	   {
+		   CNT_CONTAR( "GRF_ErroListaArestas" ) ;
+
 		   return GRF_CondRetErroEstrutura;
 	   }/* if */
 
 	   if( LIS_IrInicioLista (vertice->arestas) == LIS_CondRetListaNaoExiste )
 	   {
+		   CNT_CONTAR( "GRF_ArestasOK" ) ;
+
 		   return GRF_CondRetOK;
 	   }/* if */
 
@@ -1158,11 +1173,15 @@
 
 		   if(!flag)
 		   {
+			   CNT_CONTAR( "GRF_ArestaDirecionada" ) ;
+
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA); //aresta nao direcionada encontrada
 			   return GRF_CondRetOK;
 		   }/* if */
 
 	   } while(LIS_AvancarElementoCorrente(vertice->arestas,1)==LIS_CondRetOK);
+
+	   CNT_CONTAR( "GRF_ArestasOK" ) ;
 
 	   return GRF_CondRetOK;
    }
