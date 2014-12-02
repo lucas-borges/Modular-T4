@@ -35,6 +35,11 @@
 
 #ifdef _DEBUG
 #include "Generico.H"
+#include "CONTA.H"
+
+	/*contadores*/
+
+#define CONTADOR_FALHAS_ESTRUTURA "FalhasEstrutura"
 #endif
 
 /***********************************************************************
@@ -702,14 +707,14 @@
 
 	   if( aux->pAnt != NULL )
 	   {
-		   return LIS_CondRetErroEstrutura ;
+		    CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //algo antes do primeiro elemento
 	   }/* if */
 
 	   do
 	   {
 		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para proximo")!=TST_CondRetOK)
 		   {
-			   return LIS_CondRetErroEstrutura ;
+			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 		   }/*if*/
 
 		   aux=aux->pProx ;
@@ -720,12 +725,12 @@
 
 	   if(elementosPercorridos!=pLista->numElem)
 	   {
-		   return LIS_CondRetErroEstrutura ;
+		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //numero de elementos percorridos é diferente do numero da cabeça da lista
 	   }/* if */
 
 	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado."))
 	   {
-		   return LIS_CondRetErroEstrutura ;
+		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 	   }/* if */
 	   return LIS_CondRetOK;
    }

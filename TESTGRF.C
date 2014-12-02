@@ -98,6 +98,10 @@
 
 #include	"CARACTER.H"
 
+#ifdef _DEBUG
+#include	"CONTA.H"
+#endif
+
 static const char CRIAR_GRAFO_CMD	    [ ] = "=criargrafo"  ;
 static const char DESTROI_GRAFO_CMD     [ ] = "=destroigrafo" ;
 static const char INSERE_VERTICE_CMD    [ ] = "=inserevertice" ;
@@ -116,10 +120,13 @@ static const char CAMINHAR_CMD			[ ] = "=caminhar";
 GRF_tppGrafo pGrafo;
 
 /* os comandos a seguir somente operam em modo _DEBUG */
-
+#ifdef _DEBUG
 const char VERIFICAR_CMD[ ]   = "=verificar" ;
 const char DETURPAR_CMD [ ]   = "=deturpar" ;
 
+
+
+#endif
 /*****  Código das funções exportadas pelo módulo  *****/
 
 
@@ -488,7 +495,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
          } /* fim ativa: Deturpar o grafo */
 
-	else if ( strcmp( ComandoTeste , VERIFICAR_CMD ) == 0 )
+		 else if ( strcmp( ComandoTeste , VERIFICAR_CMD ) == 0 )
          {
 			int falhasEsperado,falhasObtido;
 
@@ -500,11 +507,18 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                return TST_CondRetParm ;
             } /* if */
 
-            GRF_VerificarGrafo( pGrafo ) ;
-			system("pause");
-            return TST_CondRetOK ;
+            if( GRF_VerificarGrafo( pGrafo )!=GRF_CondRetOK)
+			{
+				printf ( "Erros da estrutura impedem verificacao completa. Numero de falhas detectadas ate o momento: %d" , CNT_LerContadores ( CONTADOR_FALHAS_ESTRUTURA ) ) ;
+				return TST_CondRetOK ;
+			} /* if */
+			
+			falhasObtido = CNT_LerContadores ( CONTADOR_FALHAS_ESTRUTURA ) ;
+
+            return TST_CompararInt ( falhasEsperado , falhasObtido , "Diferenca entre numero de falhas esperado e numero de falhas obtido." ) ;
 
          } /* fim ativa: Deturpar o grafo */
+
       #endif
 
 

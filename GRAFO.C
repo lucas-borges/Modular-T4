@@ -663,6 +663,11 @@
 
       GRF_tppGrafo pGrafo = NULL ;
 
+	  if( pGrafoParm == NULL )
+	  {
+		  return GRF_CondRetOK ;
+	  } /* if */
+
       if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
       {
          return GRF_CondRetErroEstrutura ;
@@ -990,15 +995,10 @@
 
       /* Verifica o tipo do espaço */
 
-         if ( pCabecaParm == NULL )
-         {
-            TST_NotificarFalha( "Tentou verificar cabeça inexistente." ) ;
-            return GRF_CondRetErroEstrutura ;
-         } /* if */
-
          if ( ! CED_VerificarEspaco( pCabecaParm , NULL ))
          {
             TST_NotificarFalha( "Controle do espaço acusou erro." ) ;
+			CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
             return GRF_CondRetErroEstrutura ;
          } /* if */
 
@@ -1006,7 +1006,8 @@
               CED_ObterTipoEspaco( pCabecaParm ) ,
               "Tipo do espaço de dados não é cabeça de grafo." ) != TST_CondRetOK ) 
          {
-            return GRF_CondRetErroEstrutura ;
+             CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
+			 return GRF_CondRetErroEstrutura ;
          } /* if */
 
          pGrafo = ( GRF_tppGrafo )( pCabecaParm ) ;
@@ -1019,6 +1020,7 @@
 			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
                  "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
             {
+			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
                return GRF_CondRetErroEstrutura ;
             } /* if */
           
@@ -1061,10 +1063,10 @@
 
       CED_MarcarEspacoAtivo( pGrafo->vertices ) ;
 
-	  if(VerificaLista(pGrafo->vertices)!= LIS_CondRetOK)
+	  if(VerificaLista(pGrafo->vertices) != LIS_CondRetOK)
 	  {
-		  // a lista ta errada, dou return aqui? ou checo os vértices até dar erro? que é o que ele faz a seguir se tiver certo
-	  }
+		  return GRF_CondRetErroEstrutura ;
+	  } /* if */
 
      LIS_IrInicioLista(pGrafo->vertices);
 
@@ -1078,20 +1080,21 @@
               CED_ObterTipoEspaco( vertice ) ,
               "Tipo do espaço de dados não é vertice de grafo." ) != TST_CondRetOK ) 
          {
-            return GRF_CondRetErroEstrutura ;
+            CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
          } /* if */
-		 if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
+		 else if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
                  "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
             {
-               return GRF_CondRetErroEstrutura ;
+               CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
             } /* if */
-		 if( VerificarArestas ( vertice ) != GRF_CondRetOK )
+		 else if( VerificarArestas ( vertice ) != GRF_CondRetOK )
 		 {
 			 return GRF_CondRetErroEstrutura ;
 		 }/* if */
 
 	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
 
+	 return GRF_CondRetOK;
 
    } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
 
@@ -1100,6 +1103,11 @@
 	   int flag;
 	   void * aux;
 	   tpVertice * verticeDestino;
+
+	   if( VerificaLista(vertice->arestas) != LIS_CondRetOK )
+	   {
+		   return GRF_CondRetErroEstrutura;
+	   }/* if */
 
 	   if( LIS_IrInicioLista (vertice->arestas) == LIS_CondRetListaNaoExiste )
 	   {
@@ -1129,8 +1137,8 @@
 
 		   if(!flag)
 		   {
-			   printf("\nAresta direcionada encontrada.\n");
-			   return GRF_CondRetErroEstrutura;
+			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA); //aresta nao direcionada encontrada
+			   return GRF_CondRetOK;
 		   }/* if */
 
 	   } while(LIS_AvancarElementoCorrente(vertice->arestas,1)==LIS_CondRetOK);

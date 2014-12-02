@@ -131,6 +131,10 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
    } GRF_tpModosDeturpacao ;
 
+   /* contadores */
+
+#define CONTADOR_FALHAS_ESTRUTURA "FalhasEstrutura "
+
 #endif
 
 
