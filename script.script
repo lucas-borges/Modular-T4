@@ -31,20 +31,19 @@
 =declararparm ExibirInativos		int 3
 
 ==Inicializar contagem
-=inicializarcontadores "contadores.count"
+=inicializarcontadores "Grafo.count"
 =zerartodoscontadores
 =iniciarcontagem
-=numcontadores 
+=contagemtotal 0
 
 ==Inicializar controle de espaços
-=inicializarespacos
 =obternumeroespacosalocados  0
 
 == Criar Grafo para modo EliminaCorrente
 =criargrafo OK
-=obternumeroespacosalocados  2
+=obternumeroespacosalocados  1
 =inserevertice 1 'a' OK
-=obternumeroespacosalocados  5
+=obternumeroespacosalocados  2
 =inserevertice 2 'b' OK
 =inserevertice 3 'c' OK
 =criaaresta 1 2 OK
@@ -54,9 +53,17 @@
 
 == Verificar grafo
 =verificar 0
+
+==Exibir todos espaços alocados
 =exibirtodosespacos ExibirTodos
+
+==Exibir espaços ativos
 =exibirtodosespacos ExibirAtivos
+
+== Exibir espaços inativos
 =exibirtodosespacos ExibirInativos
+
+==Verificar espaços
 =verificartodosespacos 0
 
 == Deturpar 
