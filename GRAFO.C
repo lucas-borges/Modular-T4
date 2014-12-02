@@ -816,7 +816,7 @@
          case DeturpaValorNulo :
          {
 
-			pGrafo->pVerticeCorr->pValor=NULL;
+			LIS_AlterarValor(pGrafo->vertices,NULL);
 
             break ;
 
@@ -827,7 +827,7 @@
          case DeturpaTipoEstrutura :
          {
 
-			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr->pValor , CED_ID_TIPO_VALOR_NULO ) ;
+			CED_DefinirTipoEspaco( pGrafo->pVerticeCorr, CED_ID_TIPO_VALOR_NULO ) ;
 
             break ;
 
@@ -855,6 +855,8 @@
 				 aux2=(tpVertice*)pvalor;
 				 GRF_RemoveAresta(pGrafo,aux->chave,aux2->chave);
 			 } /* while */
+
+			 CED_MarcarEspacoNaoAtivo(aux);
 
             break ;
 
