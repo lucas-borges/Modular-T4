@@ -126,6 +126,10 @@
    GRF_tpCondRet GRF_CriarGrafo ( GRF_tppGrafo * ppGrafo , void ( * ExcluirValor ) ( void * pValor ) )
    {
 
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_CriarGrafo" ) ;
+      #endif
+
 	   *ppGrafo= ( GRF_tpGrafo * ) malloc ( sizeof ( GRF_tpGrafo )) ;
 	   if ( *ppGrafo == NULL )
 	   {
@@ -156,6 +160,9 @@
 	   int Ret;
 	   tpVertice* vertice;
 	   
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_CriarVertice" ) ;
+      #endif
 
 	   if(pGrafo==NULL)
 	   {
@@ -216,6 +223,10 @@
 	   LIS_tpCondRet lis_ret;
 	   tpVertice * verticeA, * verticeB;
 	   void * pTemp;
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_CriarAresta" ) ;
+      #endif
 
 	   if(pGrafo==NULL)
 	   {
@@ -281,6 +292,10 @@
 
 	   tpVertice * verticeA, *verticeB;
 	   void * pTemp;
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_RemoveAresta" ) ;
+      #endif
 	   
 	   if(pGrafo==NULL)
 	   {
@@ -337,6 +352,9 @@
    
    void GRF_DestroiGrafo (GRF_tppGrafo pGrafo)
    {
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_DestroiGrafo" ) ;
+      #endif
 
 	   if(pGrafo==NULL)
 	   {
@@ -356,7 +374,11 @@
 
    GRF_tpCondRet GRF_EsvaziaGrafo ( GRF_tppGrafo pGrafo )
    {
-	   
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_EsvaziaGrafo" ) ;
+      #endif
+
 	   if ( pGrafo == NULL )
 	   {
 		   return GRF_CondRetGrafoNaoExiste ;
@@ -380,6 +402,10 @@
 
 	   tpVertice * origem , * destino , * aux ;
 	   void * temp;
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "GRF_ObtemCaminho" ) ;
+      #endif
 	   
 	   if ( pGrafo == NULL )
 	   {

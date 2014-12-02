@@ -1,0 +1,14 @@
+////////////////////////////////////////////////
+//
+// Declaração de contadores
+// Conta módulo grafo marcado
+//
+///////////////////////////////////////////////
+    
+    GRF_CriarGrafo
+    GRF_CriarVertice
+    GRF_CriarAresta
+    GRF_RemoveAresta
+    GRF_DestroiGrafo
+    GRF_EsvaziaGrafo
+    GRF_ObtemCaminho
