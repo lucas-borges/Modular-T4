@@ -490,10 +490,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             } /* if */
 
             GRF_Deturpar( pGrafo , modo ) ;
-			system("pause");
+			
             return TST_CondRetOK ;
 
          } /* fim ativa: Deturpar o grafo */
+
+	/* Verificar o grafo */
 
 		 else if ( strcmp( ComandoTeste , VERIFICAR_CMD ) == 0 )
          {
@@ -517,7 +519,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
             return TST_CompararInt ( falhasEsperado , falhasObtido , "Diferenca entre numero de falhas esperado e numero de falhas obtido." ) ;
 
-         } /* fim ativa: Deturpar o grafo */
+         } /* fim ativa: Verificar o grafo */
 
       #endif
 

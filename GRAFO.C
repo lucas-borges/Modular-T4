@@ -266,7 +266,7 @@
 	   {
 		   return GRF_CondRetErroInserirAresta; 
 	   } /* if */
-
+	   
 	   return GRF_CondRetOK;
 
    } /* Fim função: GRF  &Cria Aresta */
@@ -691,7 +691,7 @@
 	  printf("verificar grafo 3\n");
 	  return VerificarVertices( pGrafo ) ;
 
-   } /* Fim função: ARV  &Verificar uma árvore */
+   } /* Fim função: GRF  &Verificar um grafo */
 
 #endif
 
@@ -721,11 +721,8 @@
 
          case DeturpaEliminaCorrente :
          {
-
 			
 			 free(pGrafo->pVerticeCorr);
-			 printf("oi\n");
-			 printf("chave: %c",*((char *)pGrafo->pVerticeCorr->pValor));
 
             break ;
 
@@ -997,7 +994,7 @@
 
 /***************************************************************************
 *
-*  Função: GRF  -Verificar um nó cabeça
+*  Função: GRF  -Verificar cabeça de grafo
 *  ****/
 
    GRF_tpCondRet GRF_VerificarCabeca( void * pCabecaParm )
@@ -1050,7 +1047,7 @@
 
       return GRF_CondRetOK ;
 
-   } /* Fim função: GRF  -Verificar um nó cabeça */
+   } /* Fim função: GRF  -Verificar cabeça de grafo */
 
 #endif
 
@@ -1059,13 +1056,7 @@
 
 /***********************************************************************
 *
-*  $FC Função: ARV  -Explorar verificando os nós de uma árvore
-*
-*  $ED Descrição da função
-*     Percorre recursivamente a árvore verificando os nós à medida que forem
-*     visitados. Caso seja encontrado alguma falha, a verificação será
-*     suspensa. Portanto, no caso de falha, é possível que nem todos
-*     os nós da árvore sejam visitados.
+*  $FC Função: GRF  -Explorar verificando os vértices
 *
 ***********************************************************************/
 
@@ -1131,7 +1122,13 @@
 
 	 return GRF_CondRetOK;
 
-   } /* Fim função: GRF  -Explorar verificando os vértices de uma grafo */
+   } /* Fim função: GRF  -Explorar verificando os vértices */
+
+/***********************************************************************
+*
+*  $FC Função: GRF  -Verificar arestas
+*
+***********************************************************************/
 
    GRF_tpCondRet VerificarArestas ( tpVertice * vertice ) 
    {
