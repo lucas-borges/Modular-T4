@@ -38,10 +38,13 @@
 
 ==Inicializar controle de espaços
 =inicializarespacos
+=obternumeroespacosalocados  0
 
 == Criar Grafo para modo EliminaCorrente
 =criargrafo OK
+=obternumeroespacosalocados  2
 =inserevertice 1 'a' OK
+=obternumeroespacosalocados  5
 =inserevertice 2 'b' OK
 =inserevertice 3 'c' OK
 =criaaresta 1 2 OK
