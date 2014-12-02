@@ -17,4 +17,8 @@
     GRF_ErroListaArestas
     GRF_ArestasOK
     GRF_ErroArestaDirecionada
+    LIS_ErroPrimeiro
+    LIS_ErroProximo
+    LIS_ErroNumElem
+    LIS_ErroUltimo
     FalhasEstrutura

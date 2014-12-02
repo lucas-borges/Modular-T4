@@ -707,6 +707,8 @@
 	    printf("verificar lista 2\n");
 	   if( aux->pAnt != NULL )
 	   {
+		   CNT_CONTAR ("LIS_ErroPrimeiro") ;
+
 		    CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //algo antes do primeiro elemento
 	   }/* if */
 	    printf("verificar lista 3\n");
@@ -714,6 +716,8 @@
 	   {
 		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para proximo")!=TST_CondRetOK)
 		   {
+			   CNT_CONTAR ("LIS_ErroProximo") ;
+
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 		   }/*if*/
 
@@ -725,6 +729,8 @@
 	    printf("verificar lista 4\n");
 	   if(elementosPercorridos!=pLista->numElem)
 	   {
+		   CNT_CONTAR ("LIS_ErroNumElem") ;
+
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //numero de elementos percorridos é diferente do numero da cabeça da lista
 	   }/* if */
 
@@ -732,6 +738,8 @@
 
 	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado.")!=TST_CondRetOK)
 	   {
+		   CNT_CONTAR ("LIS_ErroUltimo") ;
+
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 	   }/* if */
 	   return LIS_CondRetOK;
