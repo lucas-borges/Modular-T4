@@ -130,6 +130,7 @@ typedef struct GRF_tagGrafo * GRF_tppGrafo ;
 
    /* contadores */
 
+
 #define CONTADOR_FALHAS_ESTRUTURA "FalhasEstrutura"
 
 #endif
