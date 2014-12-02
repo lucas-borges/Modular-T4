@@ -510,7 +510,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
             if( GRF_VerificarGrafo( pGrafo )!=GRF_CondRetOK)
 			{
-				printf ( "Erros da estrutura impedem verificacao completa. Numero de falhas detectadas ate o momento: %d" , CNT_ObterContagem ( CONTADOR_FALHAS_ESTRUTURA ) ) ;
+				TST_NotificarFalha ( "Erros da estrutura impedem verificacao completa." ) ;
 				return TST_CondRetOK ;
 			} /* if */
 			

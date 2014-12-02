@@ -707,6 +707,7 @@
    {
 
       GRF_tpGrafo * pGrafo = NULL ;
+	  void * pValor;
 
       if ( pGrafoParm == NULL )
       {
@@ -732,12 +733,17 @@
 
          case DeturpaSucessorNulo :
          {
+			 
+ 			 LIS_IrInicioLista(pGrafo->vertices);
+			 LIS_ObterValor(pGrafo->vertices,&pValor);
 
- 			 
+			 while (pValor != pGrafo->pVerticeCorr)
+			 {
+				 LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+				 LIS_ObterValor(pGrafo->vertices,&pValor);
+			 } /* while */
+
 			 LIS_Deturpar(pGrafo->vertices,0);
-
-			 if(LIS_AvancarElementoCorrente(pGrafo->vertices,1)==LIS_CondRetFimLista){
-				 printf("fim \n");}
 			 
 
             break ;
@@ -749,7 +755,15 @@
          case DeturpaPredecessorNulo :
          {
 
-			 
+			 LIS_IrInicioLista(pGrafo->vertices);
+			 LIS_ObterValor(pGrafo->vertices,&pValor);
+
+			 while (pValor != pGrafo->pVerticeCorr)
+			 {
+				 LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+				 LIS_ObterValor(pGrafo->vertices,&pValor);
+			 } /* while */
+
 			 LIS_Deturpar(pGrafo->vertices,1);
 
             break ;
@@ -761,11 +775,17 @@
          case DeturpaSucessorLixo :
          {
 
-			 
+			 LIS_IrInicioLista(pGrafo->vertices);
+			 LIS_ObterValor(pGrafo->vertices,&pValor);
+
+			 while (pValor != pGrafo->pVerticeCorr)
+			 {
+				 LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+				 LIS_ObterValor(pGrafo->vertices,&pValor);
+			 } /* while */
+
 			  LIS_Deturpar(pGrafo->vertices,2);
-			  LIS_AvancarElementoCorrente(pGrafo->vertices,1);
-			  LIS_AvancarElementoCorrente(pGrafo->vertices,-1);
-			  printf("oi");
+			  
 	
             break ;
 
@@ -776,7 +796,15 @@
          case DeturpaPredecessorLixo :
          {
 
-			 
+			 LIS_IrInicioLista(pGrafo->vertices);
+			 LIS_ObterValor(pGrafo->vertices,&pValor);
+
+			 while (pValor != pGrafo->pVerticeCorr)
+			 {
+				 LIS_AvancarElementoCorrente(pGrafo->vertices,1);
+				 LIS_ObterValor(pGrafo->vertices,&pValor);
+			 } /* while */
+
 			  LIS_Deturpar(pGrafo->vertices,3);
 
             break ;
