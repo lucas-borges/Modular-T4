@@ -25,11 +25,19 @@
 =declararparm DestacaVertice 		int 8
 =declararparm CorrenteNulo 			int 9
 
+== Declarar critérios de exibição
+=declararparm ExibirTodos 			int 1
+=declararparm ExibirAtivos 			int 2
+=declararparm ExibirInativos		int 3
+
 ==Inicializar contagem
 =inicializarcontadores "contadores.count"
 =zerartodoscontadores
 =iniciarcontagem
 =numcontadores 
+
+==Inicializar controle de espaços
+=inicializarespacos
 
 == Criar Grafo para modo EliminaCorrente
 =criargrafo OK
@@ -43,6 +51,10 @@
 
 == Verificar grafo
 =verificar 0
+=exibirtodosespacos ExibirTodos
+=exibirtodosespacos ExibirAtivos
+=exibirtodosespacos ExibirInativos
+=verificartodosespacos 0
 
 == Deturpar 
 =deturpar EliminaCorrente
