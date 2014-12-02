@@ -1,11 +1,11 @@
 ﻿Comando de teste	Descrição
 
-=deturpar 1		Desaloca o evertice corrente do grafo, criando assim uma inconsistencia na estrutura
-=deturpar 2		Atribui NULL ao ponteiro para o vértice sucessor do vértice corrente, criando assim um desencadeamento da lista de vertices
-=deturpar 3		Atribui NULL ao ponteiro para o vértice predecessor do vértice corrente, criando assim um desencadeamento da lista de vértices
-=deturpar 4		Faz o ponteiro para o vértice sucessor do vértice corrente apontar para um espaço "lixo", criando assim uma inconsistência na lista de vértices
-=deturpar 5		Faz o ponteiro para o vértice predecessor do vértice corrente apontar para um espaço "lixo", criando assim uma inconsistência na lista de vértices
-=deturpar 6		Atribui NULL ao conteúdo do vértice corrente
-=deturpar 7		Atribui um valor nulo ao tipo de estrutura do vertice na lista de espaços alocados, criando uma inconsistência na lista de espaços alocados
-=deturpar 8		Desencadeia o vértice corrente da lista de vértices, gerando uma inconsistências na concordância entre a lista de vértices e a lista de espaços alocados
-=deturpar 9		Atribui NULL ao ponteiro do vértice corrente, gerando uma inconsistência na lista de vértices, que só poderia ter um corrente NULL caso fosse vazia			
+=deturpar 1		Desaloca o evertice corrente do grafo, criando assim uma inconsistencia na estrutura.
+=deturpar 2		Atribui NULL ao ponteiro para o vértice sucessor do vértice corrente, criando assim um desencadeamento da lista de vertices.
+=deturpar 3		Atribui NULL ao ponteiro para o vértice predecessor do vértice corrente, criando assim um desencadeamento da lista de vértices.
+=deturpar 4		Faz o ponteiro para o vértice sucessor do vértice corrente apontar para um espaço "lixo", criando assim uma inconsistência na lista de vértices.
+=deturpar 5		Faz o ponteiro para o vértice predecessor do vértice corrente apontar para um espaço "lixo", criando assim uma inconsistência na lista de vértices.
+=deturpar 6		Atribui NULL ao conteúdo do vértice corrente, criando uma inconsistência na lista de vértices.
+=deturpar 7		Atribui um valor nulo ao tipo de estrutura do vertice na lista de espaços alocados, criando uma inconsistência na lista de espaços alocados.
+=deturpar 8		Desencadeia o vértice corrente da lista de vértices, gerando uma inconsistências na concordância entre a lista de vértices e a lista de espaços alocados.
+=deturpar 9		Atribui NULL ao ponteiro do vértice corrente, gerando uma inconsistência na lista de vértices, que só poderia ter um corrente NULL caso fosse vazia.			
