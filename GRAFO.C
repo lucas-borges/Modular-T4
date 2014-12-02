@@ -1069,8 +1069,15 @@
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
                return GRF_CondRetErroEstrutura ;
             } /* if */
+			 
           
          } /* if */
+		 else if (pGrafo->vertices!=NULL)
+		 {
+			 CNT_CONTAR("GRF_ErroPonteiroCorrenteListaVazia");
+			 CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA);
+			 return GRF_CondRetErroEstrutura;
+		 }
 		   printf("verifica_cabeca 3\n");
 
 		   CNT_CONTAR( "GRF_CabecaOK" ) ;

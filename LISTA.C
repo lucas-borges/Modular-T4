@@ -36,7 +36,8 @@
 #ifdef _DEBUG
 #include "Generico.H"
 #include "CONTA.H"
-
+#include "CESPDIN.H"
+#include "IdTiposEspaco.def"
 	/*contadores*/
 
 #define CONTADOR_FALHAS_ESTRUTURA "FalhasEstrutura"
@@ -118,6 +119,10 @@
       LimparCabeca( *ppLista ) ;
 
       (*ppLista)->ExcluirValor = ExcluirValor ;
+
+	#ifdef _DEBUG
+		CED_DefinirTipoEspaco(*ppLista,LIS_TipoEspacoElemento);
+	#endif
 
       return LIS_CondRetOK ; 
 
@@ -432,6 +437,14 @@
                pElem    = pElem->pProx ;
             } /* for */
 
+			#ifdef _DEBUG
+			if(TST_CompararInt(LIS_TipoEspacoElemento,CED_ObterTipoEspaco(pElem),"Tipo de espaço do elemento sucessor não é elemento da lista")!=TST_CondRetOK)
+			{
+				CNT_CONTAR(CONTADOR_FALHAS_ESTRUTURA);
+				return LIS_CondRetErroEstrutura;
+			}
+			#endif
+
             if ( pElem != NULL )
             {
                pLista->pElemCorr = pElem ;
@@ -457,7 +470,14 @@
                } /* if */
                pElem    = pElem->pAnt ;
             } /* for */
-
+			
+			#ifdef _DEBUG
+			if(TST_CompararInt(LIS_TipoEspacoElemento,CED_ObterTipoEspaco(pElem),"Tipo de espaço do elemento predecessor não é elemento da lista")!=TST_CondRetOK)
+			{
+				CNT_CONTAR(CONTADOR_FALHAS_ESTRUTURA);
+				return LIS_CondRetErroEstrutura;
+			}
+			#endif
             if ( pElem != NULL )
             {
                pLista->pElemCorr = pElem ;
@@ -704,7 +724,7 @@
 	   }/*if*/
 
 	   aux = pLista->pOrigemLista;
-	    printf("verificar lista 2\n");
+	   printf("verificar lista 2\n");
 	   if( aux->pAnt != NULL )
 	   {
 		   CNT_CONTAR ("LIS_ErroPrimeiro") ;

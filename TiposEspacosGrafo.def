@@ -18,6 +18,7 @@
 
       GRF_TipoEspacoCabeca , 
       GRF_TipoEspacoVertice     ,
+	  LIS_TipoEspacoElemento	,
 
 /********** Fim do arquivo de definição: TiposEspacosGrafo.def  **********/
 
