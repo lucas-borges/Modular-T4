@@ -196,6 +196,10 @@
             return LIS_CondRetFaltouMemoria ;
          } /* if */
 
+		 #ifdef _DEBUG
+         CED_DefinirTipoEspaco( pElem, LIS_TipoEspacoElemento ) ;
+      #endif
+
       /* Encadear o elemento antes do elemento corrente */
 
          if ( pLista->pElemCorr == NULL )
@@ -246,6 +250,10 @@
          {
             return LIS_CondRetFaltouMemoria ;
          } /* if */
+
+		  #ifdef _DEBUG
+         CED_DefinirTipoEspaco( pElem, LIS_TipoEspacoElemento ) ;
+      #endif
 
       /* Encadear o elemento após o elemento */
 
@@ -437,13 +445,7 @@
                pElem    = pElem->pProx ;
             } /* for */
 
-			#ifdef _DEBUG
-			if(TST_CompararInt(LIS_TipoEspacoElemento,CED_ObterTipoEspaco(pElem),"Tipo de espaço do elemento sucessor não é elemento da lista")!=TST_CondRetOK)
-			{
-				CNT_CONTAR(CONTADOR_FALHAS_ESTRUTURA);
-				return LIS_CondRetErroEstrutura;
-			}
-			#endif
+			
 
             if ( pElem != NULL )
             {
@@ -471,13 +473,7 @@
                pElem    = pElem->pAnt ;
             } /* for */
 			
-			#ifdef _DEBUG
-			if(TST_CompararInt(LIS_TipoEspacoElemento,CED_ObterTipoEspaco(pElem),"Tipo de espaço do elemento predecessor não é elemento da lista")!=TST_CondRetOK)
-			{
-				CNT_CONTAR(CONTADOR_FALHAS_ESTRUTURA);
-				return LIS_CondRetErroEstrutura;
-			}
-			#endif
+			
             if ( pElem != NULL )
             {
                pLista->pElemCorr = pElem ;
@@ -734,6 +730,14 @@
 	    printf("verificar lista 3\n");
 	   do
 	   {
+		   printf("HAHAHA: %d, %d\n",LIS_TipoEspacoElemento,CED_ObterTipoEspaco(aux));
+			if(TST_CompararInt(LIS_TipoEspacoElemento,CED_ObterTipoEspaco(aux),"Tipo de espaço do elemento não é elemento da lista")!=TST_CondRetOK)
+			{
+				CNT_CONTAR(CONTADOR_FALHAS_ESTRUTURA);
+				printf("vai retornar\n");
+				return LIS_CondRetErroEstrutura;
+			}
+			printf("--\n");
 		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para proximo")!=TST_CondRetOK)
 		   {
 			   CNT_CONTAR ("LIS_ErroProximo") ;

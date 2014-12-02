@@ -674,10 +674,9 @@
 	 
 	  if( pGrafoParm == NULL )
 	  {
-		  
-	   #ifdef _DEBUG
+		 
          CNT_CONTAR( "GRF_GrafoNull" ) ;
-      #endif
+      
 
 		  return GRF_CondRetOK ;
 	  } /* if */
@@ -685,9 +684,9 @@
       if ( GRF_VerificarCabeca( pGrafoParm ) != GRF_CondRetOK )
       {
 		  
-	   #ifdef _DEBUG
+	   
          CNT_CONTAR( "GRF_ErroCabeca" ) ;
-      #endif
+      
 
          return GRF_CondRetErroEstrutura ;
       } /* if */
@@ -722,7 +721,7 @@
       } /* if */
 
       pGrafo = ( GRF_tpGrafo * )( pGrafoParm ) ;
-
+	  printf("deturpou\n");
       switch ( ModoDeturpar ) {
 
       /* Elimina elemento corrente */
@@ -1038,6 +1037,7 @@
    {
 
       GRF_tppGrafo pGrafo = NULL ;
+	  void * pValor;
 	  printf("verifica_cabeca 1\n");
       /* Verifica o tipo do espaço */
 
@@ -1065,7 +1065,15 @@
 
   printf("verifica_cabeca 2\n");
       /* Verifica corrente */
-
+ 
+		if((pGrafo->pVerticeCorr == NULL) && ( LIS_ObterValor(pGrafo->vertices,&pValor)!=LIS_CondRetListaVazia))
+		{
+			
+			CNT_CONTAR("GRF_ErroPonteiroCorrenteListaVazia");
+			 CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA);
+			 TST_NotificarFalha("Corrente NULL mas grafo não é vazio");
+			 return GRF_CondRetErroEstrutura;
+		}/* if */
 		 if ( pGrafo->pVerticeCorr != NULL )
          {
 			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
@@ -1079,12 +1087,6 @@
 			 
           
          } /* if */
-		 else if (pGrafo->vertices!=NULL)
-		 {
-			 CNT_CONTAR("GRF_ErroPonteiroCorrenteListaVazia");
-			 CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA);
-			 return GRF_CondRetErroEstrutura;
-		 }
 		   printf("verifica_cabeca 3\n");
 
 		   CNT_CONTAR( "GRF_CabecaOK" ) ;
@@ -1125,7 +1127,7 @@
 	  if(VerificaLista(pGrafo->vertices) != LIS_CondRetOK)
 	  {
 		  CNT_CONTAR( "GRF_ErroListaVertices" ) ;
-
+		  printf("retornando de ver vertice\n");
 		  return GRF_CondRetErroEstrutura ;
 	  } /* if */
 

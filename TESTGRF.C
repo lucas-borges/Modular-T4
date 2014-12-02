@@ -511,6 +511,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             if( GRF_VerificarGrafo( pGrafo )!=GRF_CondRetOK)
 			{
 				TST_NotificarFalha ( "Erros da estrutura impedem verificacao completa." ) ;
+			
 				return TST_CondRetOK ;
 			} /* if */
 			
