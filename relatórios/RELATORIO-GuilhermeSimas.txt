@@ -1,0 +1,12 @@
+Relatório:
+
+
+
+Data	HorasTrabalhadas	       Descrição				Detalhamento
+
+28/11		1.0		        estudar					estudar os módulos CESPDIN e CONTA
+28/11		2		    codificar módulo				implementar funções de verificar
+01/12		4		    codificar módulo				implementar funçoes verificar e contadores
+01/12		1		     realizar testes				realizar testes
+01/12		2	diagnosticar e corrigir os problemas encontrados        corrigir erros
+01/12           1                    realizar testes				realizar testes		
