@@ -52,6 +52,7 @@
                *   Esse ponteiro corresponde a um identificador do grafo para fins
                *   de verificação da integridade. */
 
+
          #endif
 
          void * pValor ;
@@ -86,6 +87,10 @@
 
 		 void ( * ExcluirValor ) ( void * pvalor ) ;
 			   /* Ponteiro para a função de destruição do valor contido em um vertice */
+
+		#ifdef _DEBUG
+			 int numVertices;
+		#endif
 
    } GRF_tpGrafo ;
 
@@ -134,6 +139,7 @@
 	   } /* if */
 
 	   #ifdef _DEBUG
+		 (*ppGrafo)->numVertices=0;
          CED_DefinirTipoEspaco( *ppGrafo, GRF_TipoEspacoCabeca ) ;
       #endif
 
@@ -175,6 +181,7 @@
 	   } /* if */
 
 	   #ifdef _DEBUG
+	     pGrafo->numVertices++;
 		 vertice->pCabeca=pGrafo;
          CED_DefinirTipoEspaco( vertice, GRF_TipoEspacoVertice ) ;
       #endif
