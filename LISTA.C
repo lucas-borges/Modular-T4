@@ -728,7 +728,7 @@
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //numero de elementos percorridos é diferente do numero da cabeça da lista
 	   }/* if */
 
-	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado."))
+	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado.")!=TST_CondRetOK)
 	   {
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
 	   }/* if */
