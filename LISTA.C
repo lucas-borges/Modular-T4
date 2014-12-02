@@ -697,19 +697,19 @@
 	   LIS_tppLista ant = NULL;
 	   tpElemLista * aux;
 	   int elementosPercorridos = 1 ;
-
+	   printf("verificar lista 1\n");
 	   if( pLista == NULL )
 	   {
 		   return LIS_CondRetOK;
 	   }/*if*/
 
 	   aux = pLista->pOrigemLista;
-
+	    printf("verificar lista 2\n");
 	   if( aux->pAnt != NULL )
 	   {
 		    CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //algo antes do primeiro elemento
 	   }/* if */
-
+	    printf("verificar lista 3\n");
 	   do
 	   {
 		   if(TST_CompararPonteiro(aux->pProx->pAnt,aux,"Erro no ponteiro para proximo")!=TST_CondRetOK)
@@ -721,13 +721,13 @@
 
 		   elementosPercorridos++;
 
-	   } while(aux!=NULL);
-
+	   } while(aux->pProx!=NULL);
+	    printf("verificar lista 4\n");
 	   if(elementosPercorridos!=pLista->numElem)
 	   {
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ; //numero de elementos percorridos é diferente do numero da cabeça da lista
 	   }/* if */
-
+	    printf("verificar lista 5\n");
 	   if(TST_CompararPonteiro(pLista->pFimLista,aux,"Ultimo elemento nao e o esperado."))
 	   {
 		   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;

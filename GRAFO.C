@@ -43,7 +43,7 @@
 
 		#ifdef _DEBUG
 
-         GRF_tppGrafo * pCabeca ;
+         GRF_tppGrafo pCabeca ;
                /* Ponteiro para cabeca
                *
                *$ED Descrição
@@ -137,7 +137,7 @@
 	   } /* if */
 
 	   #ifdef _DEBUG
-         CED_DefinirTipoEspaco( ppGrafo, GRF_TipoEspacoCabeca ) ;
+         CED_DefinirTipoEspaco( *ppGrafo, GRF_TipoEspacoCabeca ) ;
       #endif
 
 	   LIS_CriarLista ( &( ( * ppGrafo ) -> vertices ) , DestruirVertice ) ; //ao destruir a lista de vértices tem que destruir o vértice
@@ -182,6 +182,7 @@
 	   } /* if */
 
 	   #ifdef _DEBUG
+		 vertice->pCabeca=pGrafo;
          CED_DefinirTipoEspaco( vertice, GRF_TipoEspacoVertice ) ;
       #endif
 
@@ -688,7 +689,7 @@
    {
 
       GRF_tppGrafo pGrafo = NULL ;
-
+	  printf("verificar grafo 1\n");
 	  if( pGrafoParm == NULL )
 	  {
 		  return GRF_CondRetOK ;
@@ -698,11 +699,11 @@
       {
          return GRF_CondRetErroEstrutura ;
       } /* if */
-
+	  printf("verificar grafo 2\n");
       CED_MarcarEspacoAtivo( pGrafoParm ) ;
 
       pGrafo = ( GRF_tppGrafo ) ( pGrafoParm ) ;
-
+	  printf("verificar grafo 3\n");
 	  return VerificarVertices( pGrafo ) ;
 
    } /* Fim função: ARV  &Verificar uma árvore */
@@ -1018,7 +1019,7 @@
    {
 
       GRF_tppGrafo pGrafo = NULL ;
-
+	  printf("verifica_cabeca 1\n");
       /* Verifica o tipo do espaço */
 
          if ( ! CED_VerificarEspaco( pCabecaParm , NULL ))
@@ -1038,20 +1039,20 @@
 
          pGrafo = ( GRF_tppGrafo )( pCabecaParm ) ;
 
-
+  printf("verifica_cabeca 2\n");
       /* Verifica corrente */
 
 		 if ( pGrafo->pVerticeCorr != NULL )
          {
 			 if ( TST_CompararPonteiro( pCabecaParm , pGrafo->pVerticeCorr->pCabeca ,
-                 "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
+                 "Vértice corrente não aponta para cabeça." ) != TST_CondRetOK )
             {
 			   CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
                return GRF_CondRetErroEstrutura ;
             } /* if */
           
          } /* if */
-
+		   printf("verifica_cabeca 3\n");
       return GRF_CondRetOK ;
 
    } /* Fim função: GRF  &Verificar um nó cabeça */
@@ -1081,21 +1082,21 @@
 	  void * aux;
 
 	  tpVertice * vertice;
-
+	  printf("verificar vertice 1\n");
       if ( pGrafo->vertices == NULL )
       {
          return GRF_CondRetOK ;
       } /* if */
 
       CED_MarcarEspacoAtivo( pGrafo->vertices ) ;
-
+	  printf("verificar vertice 2\n");
 	  if(VerificaLista(pGrafo->vertices) != LIS_CondRetOK)
 	  {
 		  return GRF_CondRetErroEstrutura ;
 	  } /* if */
 
      LIS_IrInicioLista(pGrafo->vertices);
-
+	 printf("verificar vertice 3\n");
 	 do
 	 {
 		 LIS_ObterValor(pGrafo->vertices,&aux);
@@ -1109,7 +1110,7 @@
             CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
          } /* if */
 		 else if ( TST_CompararPonteiro( pGrafo , vertice->pCabeca,
-                 "Nó corrente não aponta para cabeça." ) != TST_CondRetOK )
+                 "Vértice não aponta para cabeça." ) != TST_CondRetOK )
             {
                CNT_CONTAR (CONTADOR_FALHAS_ESTRUTURA) ;
             } /* if */
@@ -1119,7 +1120,7 @@
 		 }/* if */
 
 	 } while ( LIS_AvancarElementoCorrente ( pGrafo->vertices , 1 ) == LIS_CondRetOK ) ;
-
+	 printf("verificar vertice 4\n");
 	 return GRF_CondRetOK;
 
    } /* Fim função: ARV  -Explorar verificando os nós de uma árvore */
