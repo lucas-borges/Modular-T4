@@ -30,6 +30,7 @@
    #include   "Conta.h"
    #include   "cespdin.h"
    #include   "IdTiposEspaco.def"
+
 #endif
 
 /***********************************************************************
@@ -996,7 +997,7 @@
 
 /***************************************************************************
 *
-*  Função: GRF  &Verificar um nó cabeça
+*  Função: GRF  -Verificar um nó cabeça
 *  ****/
 
    GRF_tpCondRet GRF_VerificarCabeca( void * pCabecaParm )
@@ -1049,7 +1050,7 @@
 
       return GRF_CondRetOK ;
 
-   } /* Fim função: GRF  &Verificar um nó cabeça */
+   } /* Fim função: GRF  -Verificar um nó cabeça */
 
 #endif
 
