@@ -690,6 +690,7 @@
 
       GRF_tppGrafo pGrafo = NULL ;
 	  printf("verificar grafo 1\n");
+	 
 	  if( pGrafoParm == NULL )
 	  {
 		  return GRF_CondRetOK ;
